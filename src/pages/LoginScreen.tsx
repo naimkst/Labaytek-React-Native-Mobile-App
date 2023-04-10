@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import {Image, Text, View} from 'react-native';
 import PhoneInput from 'react-native-phone-number-input';
-import {Button} from '../components/Button';
+import {Button} from '../components/GlobalComponent/Button';
 
 export const LoginScreen = ({navigation}: any) => {
   const [value, setValue] = useState('');

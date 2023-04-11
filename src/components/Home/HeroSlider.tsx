@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Dimensions, Image, Text, View} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
+import {COLORS} from '../../helper/color';
 
 export const HeroSlider = () => {
   const {width} = Dimensions.get('window');
@@ -76,7 +77,7 @@ export const HeroSlider = () => {
             height: 10,
             borderRadius: 5,
             marginHorizontal: 0,
-            backgroundColor: '#FAA419',
+            backgroundColor: COLORS.primaryColor,
           }}
           inactiveDotStyle={{
             backgroundColor: 'rgba(255, 255, 255, 0.92)',

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import {COLORS} from '../../helper/color';
 
 const data = [
   {
@@ -57,14 +58,14 @@ export const OnSaleGrid = () => {
                 {item.price}
               </Text>
               <Image
-                style={{resizeMode: 'contain', tintColor: '#FAA419'}}
+                style={{resizeMode: 'contain', tintColor: COLORS.primaryColor}}
                 className=" w-[28px] h-[28px] p-0 m-0 mb-2"
                 source={require('../../assets/images/bag.png')}
               />
             </View>
             <View className="absolute top-1 left-1">
               <Image
-                style={{resizeMode: 'contain', tintColor: 'red'}}
+                style={{resizeMode: 'contain', tintColor: COLORS.primaryColor}}
                 className="overflow-hidden w-[22px] p-0 m-0 h-[22px] mb-2"
                 source={require('../../assets/images/heart.png')}
               />

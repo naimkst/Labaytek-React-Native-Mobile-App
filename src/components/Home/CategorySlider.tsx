@@ -1,5 +1,6 @@
 import React from 'react';
 import {Image, ScrollView, Text, View} from 'react-native';
+import {COLORS} from '../../helper/color';
 
 export const CategorySlider = () => {
   return (
@@ -15,7 +16,7 @@ export const CategorySlider = () => {
           </Text>
           <Image
             className="w-[30px] h-[30px]"
-            style={{tintColor: '#ffffff'}}
+            style={{tintColor: COLORS.white}}
             source={require('../../assets/images/category.png')}
           />
         </View>
@@ -26,7 +27,7 @@ export const CategorySlider = () => {
           </Text>
           <Image
             className="w-[30px] h-[30px]"
-            style={{tintColor: '#ffffff'}}
+            style={{tintColor: COLORS.white}}
             source={require('../../assets/images/delivery.png')}
           />
         </View>
@@ -37,7 +38,7 @@ export const CategorySlider = () => {
           </Text>
           <Image
             className="w-[30px] h-[30px]"
-            style={{tintColor: '#ffffff'}}
+            style={{tintColor: COLORS.white}}
             source={require('../../assets/images/gallery.png')}
           />
         </View>

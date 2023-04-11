@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import {COLORS} from '../../helper/color';
 
 export const ProductGrid = () => {
   return (
@@ -23,7 +24,7 @@ export const ProductGrid = () => {
               $ 200
             </Text>
             <Image
-              style={{resizeMode: 'contain', tintColor: '#FAA419'}}
+              style={{resizeMode: 'contain', tintColor: COLORS.primaryColor}}
               className=" w-[28px] h-[28px] p-0 m-0 mb-2"
               source={require('../../assets/images/bag.png')}
             />
@@ -46,7 +47,7 @@ export const ProductGrid = () => {
               $ 200
             </Text>
             <Image
-              style={{resizeMode: 'contain', tintColor: '#FAA419'}}
+              style={{resizeMode: 'contain', tintColor: COLORS.primaryColor}}
               className=" w-[28px] h-[28px] p-0 m-0 mb-2"
               source={require('../../assets/images/bag.png')}
             />
@@ -69,7 +70,7 @@ export const ProductGrid = () => {
               $ 200
             </Text>
             <Image
-              style={{resizeMode: 'contain', tintColor: '#FAA419'}}
+              style={{resizeMode: 'contain', tintColor: COLORS.primaryColor}}
               className=" w-[28px] h-[28px] p-0 m-0 mb-2"
               source={require('../../assets/images/bag.png')}
             />

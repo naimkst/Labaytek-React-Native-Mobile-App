@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, Text, View} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {COLORS} from '../../helper/color';
 
 export const SearchSection = () => {
   return (
@@ -14,7 +15,7 @@ export const SearchSection = () => {
         <TextInput
           placeholder="Serch products here.."
           className="w-full h-[40px] focus:text-secondaryBlack focus:outline-none placeholder:font-FontNormal"
-          selectionColor="#FAA419"
+          selectionColor={COLORS.primaryColor}
         />
       </View>
     </View>

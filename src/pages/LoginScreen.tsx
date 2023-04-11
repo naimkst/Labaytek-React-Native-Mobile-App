@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react';
 import {Image, Text, View} from 'react-native';
 import PhoneInput from 'react-native-phone-number-input';
 import {Button} from '../components/GlobalComponent/Button';
+import {COLORS} from '../helper/color';
 
 export const LoginScreen = ({navigation}: any) => {
   const [value, setValue] = useState('');
@@ -47,9 +48,9 @@ export const LoginScreen = ({navigation}: any) => {
             height: 70,
             borderRadius: 10,
             overflow: 'hidden',
-            borderColor: '#E5E5E5',
+            borderColor: COLORS.grey,
             borderWidth: 1,
-            backgroundColor: '#ffffff',
+            backgroundColor: COLORS.white,
           }}
           onChangeFormattedText={text => {
             setFormattedValue(text);

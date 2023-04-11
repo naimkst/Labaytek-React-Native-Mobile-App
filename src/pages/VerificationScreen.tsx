@@ -6,6 +6,7 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
+import {COLORS} from '../helper/color';
 
 const styles = StyleSheet.create({
   root: {flex: 1, padding: 20},
@@ -18,12 +19,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginHorizontal: 5,
     borderWidth: 1,
-    borderColor: '#EBE9E9',
+    borderColor: COLORS.grey,
     textAlign: 'center',
     borderRadius: 10,
   },
   focusCell: {
-    borderColor: '#FAA419',
+    borderColor: COLORS.primaryColor,
   },
 });
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
+import {COLORS} from '../../helper/color';
 
 const data = [
   {
@@ -40,7 +41,7 @@ export const SelectedGrid = () => {
           <View
             key={`selected${index}`}
             style={{
-              backgroundColor: '#fff',
+              backgroundColor: COLORS.white,
               display: 'flex',
               flexDirection: 'row',
               alignItems: 'center',

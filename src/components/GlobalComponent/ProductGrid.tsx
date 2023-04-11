@@ -10,7 +10,7 @@ export const ProductGrid = () => {
           <Image
             style={{resizeMode: 'cover'}}
             className="overflow-hidden w-full p-0 m-0 h-[140px] mb-2"
-            source={require('../../assets/images/product04.png')}
+            source={require('../../assets/images/product1.jpg')}
           />
           <Text className="mt-2 text-[18px] font-FontBold text-primaryBlack">
             Amos Chair
@@ -33,7 +33,7 @@ export const ProductGrid = () => {
           <Image
             style={{resizeMode: 'cover'}}
             className="overflow-hidden w-full p-0 m-0 h-[140px] mb-2"
-            source={require('../../assets/images/product04.png')}
+            source={require('../../assets/images/product1.jpg')}
           />
           <Text className="mt-2 text-[18px] font-FontBold text-primaryBlack">
             Amos Chair
@@ -56,7 +56,7 @@ export const ProductGrid = () => {
           <Image
             style={{resizeMode: 'cover'}}
             className="overflow-hidden w-full p-0 m-0 h-[140px] mb-2"
-            source={require('../../assets/images/product04.png')}
+            source={require('../../assets/images/product1.jpg')}
           />
           <Text className="mt-2 text-[18px] font-FontBold text-primaryBlack">
             Amos Chair

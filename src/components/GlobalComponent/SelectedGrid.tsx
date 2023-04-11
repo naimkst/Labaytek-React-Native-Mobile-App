@@ -38,7 +38,7 @@ export const SelectedGrid = () => {
         }}>
         {data?.map((item: any, index: number) => (
           <View
-            className=""
+            key={`selected${index}`}
             style={{
               backgroundColor: '#fff',
               display: 'flex',
@@ -54,14 +54,15 @@ export const SelectedGrid = () => {
               style={{
                 borderRadius: 10,
               }}
-              className=" w-[70px] h-[70px]"
+              className=" w-[65px] h-[65px]"
               source={item.image}
             />
             <View
               style={{
                 maxWidth: '70%',
+                paddingRight: 20,
               }}>
-              <Text className="text-[18px] font-FontNormal text-primaryBlack">
+              <Text className="text-[17px] font-FontNormal text-primaryBlack">
                 {item.title}
               </Text>
             </View>

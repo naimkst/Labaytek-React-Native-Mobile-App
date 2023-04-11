@@ -19,10 +19,10 @@ export const OnSaleSection = () => {
       <View className="mt-[20px]">
         <OnSaleGrid />
       </View>
-
+      {/* 
       <View>
         <Icon name="stepforward" size={30} color="#900" />
-      </View>
+      </View> */}
     </View>
   );
 };

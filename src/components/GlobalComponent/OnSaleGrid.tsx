@@ -38,7 +38,9 @@ export const OnSaleGrid = () => {
     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
       <View className="flex flex-row gap-[15px] max-w-full px-[10px] relative">
         {data?.map((item: any, index: number) => (
-          <View className="bg-white p-[10px] rounded-[5px] w-[48%]">
+          <View
+            key={`onSale${index}`}
+            className="bg-white p-[10px] rounded-[5px] w-[48%]">
             <Image
               style={{resizeMode: 'cover'}}
               className="overflow-hidden w-full p-0 m-0 h-[140px] mb-2"

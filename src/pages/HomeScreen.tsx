@@ -7,6 +7,7 @@ import {DeveliverySection} from '../components/Home/DeveliverySection';
 import {ScrollView} from 'react-native-gesture-handler';
 import {SelectedSection} from '../components/Home/SelectedSection';
 import {SearchSection} from '../components/GlobalComponent/SearchBar';
+import {OnSaleSection} from '../components/Home/OnSaleSection';
 
 export const HomeScreen = () => {
   return (
@@ -18,6 +19,7 @@ export const HomeScreen = () => {
           <CategorySlider />
           <DeveliverySection />
           <SelectedSection />
+          <OnSaleSection />
         </View>
       </ScrollView>
     </SafeAreaView>

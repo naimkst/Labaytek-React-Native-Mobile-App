@@ -2,15 +2,15 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "src/assets/fonts/HirukoPro-Bold.ttf",
+      "path": "src/assets/font/HirukoPro-Bold.ttf",
       "sha1": "a415a0049b10d17c385d50a8cd5141c188b670f2"
     },
     {
-      "path": "src/assets/fonts/HirukoPro-Light.ttf",
+      "path": "src/assets/font/HirukoPro-Light.ttf",
       "sha1": "d063fdabceb8183912ab2c49dd5aca71fdb351ec"
     },
     {
-      "path": "src/assets/fonts/HirukoPro-Regular.ttf",
+      "path": "src/assets/font/HirukoPro-Regular.ttf",
       "sha1": "175e76cd7fd69a9a89c58a7b3efab669ade92fbe"
     }
   ]

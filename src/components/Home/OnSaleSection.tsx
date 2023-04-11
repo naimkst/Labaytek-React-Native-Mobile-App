@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {SelectedGrid} from '../GlobalComponent/SelectedGrid';
 import {OnSaleGrid} from '../GlobalComponent/OnSaleGrid';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 export const OnSaleSection = () => {
   return (
@@ -17,6 +18,10 @@ export const OnSaleSection = () => {
 
       <View className="mt-[20px]">
         <OnSaleGrid />
+      </View>
+
+      <View>
+        <Icon name="stepforward" size={30} color="#900" />
       </View>
     </View>
   );

@@ -6,8 +6,8 @@ import {COLORS} from '../../helper/color';
 
 export const SearchSection = () => {
   return (
-    <View className="w-[95%] m-auto mt-[15px] overflow-hidden p-2">
-      <View className="flex flex-row items-center gap-2 border-[1px] border-secondaryGray/40 rounded-full h-[50px] pb-[7px]">
+    <View className="max-w-[100%] m-auto pt-[20px] pb-[10px] pr-[10px] pl-[17px]">
+      <View className="flex flex-row items-center  gap-2 border-[1px] border-secondaryGray/40 rounded-full h-[50px] pb-[7px]">
         <Image
           className="w-[30px] h-[30px] text-black"
           source={require('../../assets/images/search.png')}

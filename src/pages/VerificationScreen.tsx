@@ -38,7 +38,7 @@ export const VerificationScreen = ({navigation}: any) => {
     setValue,
   });
   return (
-    <View className="flex flex-col items-center justify-between py-[40px] h-full bg-white">
+    <View className="flex flex-col items-center justify-between py-[40px] h-full bg-white pb-[65px]">
       <View className="text-center">
         <Image
           className="w-[280px] h-[250px]"

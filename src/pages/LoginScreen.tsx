@@ -45,7 +45,7 @@ export const LoginScreen = ({navigation}: any) => {
           }}
           containerStyle={{
             width: '90%',
-            height: 70,
+            height: 85,
             borderRadius: 10,
             overflow: 'hidden',
             borderColor: COLORS.grey,

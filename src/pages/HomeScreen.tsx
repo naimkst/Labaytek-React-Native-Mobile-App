@@ -13,7 +13,7 @@ export const HomeScreen = () => {
   return (
     <SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View>
+        <View className="mb-[65px]">
           <HeroSlider />
           <SearchSection />
           <CategorySlider />

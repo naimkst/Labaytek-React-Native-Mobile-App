@@ -7,39 +7,80 @@ import {HomeScreen} from './src/pages/HomeScreen';
 import {InfoScreen} from './src/pages/InfoScreen';
 import {LoginScreen} from './src/pages/LoginScreen';
 import {VerificationScreen} from './src/pages/VerificationScreen';
+import {Navigation} from './src/components/GlobalComponent/Navigation';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/AntDesign';
+import {COLORS} from './src/helper/color';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
+  const Tab = createBottomTabNavigator();
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="HomeScreen">
-        <Stack.Screen
+      <Tab.Navigator
+        initialRouteName="Navigation"
+        screenOptions={({route}: any) => ({
+          tabBarIcon: ({focused, color, size}) => {
+            let iconName = '';
+            if (route.name === 'Home') {
+              iconName = focused ? 'home' : 'home';
+            } else if (route.name === 'Start') {
+              iconName = focused ? 'windowso' : 'windowso';
+            } else if (route.name === 'Info') {
+              iconName = focused ? 'shoppingcart' : 'shoppingcart';
+            } else if (route.name === 'Login') {
+              iconName = focused ? 'user' : 'user';
+            } else if (route.name === 'Verify') {
+              iconName = focused ? 'login' : 'login';
+            }
+            return <Icon name={iconName} size={30} color={color} />;
+          },
+          tabBarStyle: {
+            position: 'absolute',
+            height: 50,
+            shadowColor: 'transparent',
+          },
+        })}
+        //@ts-ignore
+        tabBarOptions={{
+          activeTintColor: COLORS.primaryColor,
+          inactiveTintColor: COLORS.secondaryGray,
+          showLabel: false,
+          style: {
+            backgroundColor: 'red',
+            height: 80,
+            paddingBottom: 20,
+            paddingTop: 10,
+          },
+        }}>
+        <Tab.Screen
           name="Home"
           component={HomeScreen}
           options={{headerShown: false}}
         />
-        <Stack.Screen
+        <Tab.Screen
           name="Start"
           component={StartScreen}
-          options={{headerShown: false}}
+          options={{headerShown: false, tabBarStyle: {display: 'none'}}}
         />
-        <Stack.Screen
+        <Tab.Screen
           name="Info"
           component={InfoScreen}
-          options={{headerShown: false}}
+          options={{headerShown: false, tabBarStyle: {display: 'none'}}}
         />
 
-        <Stack.Screen
+        <Tab.Screen
           name="Login"
           component={LoginScreen}
-          options={{headerShown: false}}
+          options={{headerShown: false, tabBarStyle: {display: 'none'}}}
         />
-        <Stack.Screen
+        <Tab.Screen
           name="Verify"
           component={VerificationScreen}
-          options={{headerShown: false}}
+          options={{headerShown: false, tabBarButton: () => null}}
         />
-      </Stack.Navigator>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };

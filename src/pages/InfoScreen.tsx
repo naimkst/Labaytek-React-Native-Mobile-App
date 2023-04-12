@@ -3,7 +3,7 @@ import {Image, Text, View} from 'react-native';
 
 export const InfoScreen = ({navigation}: any) => {
   return (
-    <View className="flex justify-between h-full py-5 bg-white px-[15px]">
+    <View className="flex justify-between h-full py-5 bg-white">
       <View className="">
         <View className="flex justify-center items-center gap-2">
           <Image source={require('../assets/images/Newlogo.jpg')} />
@@ -11,7 +11,7 @@ export const InfoScreen = ({navigation}: any) => {
         </View>
       </View>
 
-      <View className="w-full">
+      <View className="w-full px-[15px]">
         <View className="flex flex-row items-center gap-3 mb-[40px]">
           <Image
             className="w-[30px] h-[30px]"

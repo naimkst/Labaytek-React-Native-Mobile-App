@@ -15,6 +15,7 @@ import {
   startOtpListener,
   useOtpVerify,
 } from 'react-native-otp-verify';
+import {useRoute} from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   root: {flex: 1, padding: 20},
@@ -43,6 +44,7 @@ export const VerificationScreen = ({navigation}: any) => {
   const [getOtp, setOtp] = useState<any>('');
   const [getHashs, setHash] = useState('');
   const [getMessage, setMessage] = useState('');
+  const route = useRoute();
   const ref: any = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
@@ -50,7 +52,7 @@ export const VerificationScreen = ({navigation}: any) => {
   });
   const verfiryCode = async () => {
     let user = await AsyncStorage.getItem('code');
-    if (user === value) {
+    if (user === value ? value : getOtp ? getOtp : '') {
       AsyncStorage.setItem('isLogin', JSON.stringify('true'));
       navigation.navigate('Home');
     } else {
@@ -72,10 +74,12 @@ export const VerificationScreen = ({navigation}: any) => {
   //@ts-ignore
   const codes = text?.match(fourDigitRegex)[0];
 
-  console.log(otp, 'Read message####');
+  console.log(otp, 'OTP####');
+  console.log(message, 'Read message####');
+  console.log(route, 'toure message####');
   useEffect(() => {
     setOtp(otp);
-  }, [message, otp, getOtp]);
+  }, [message, otp, getOtp, startListener, stopListener, route]);
 
   return (
     <View className="flex flex-col items-center justify-between py-[40px] h-full bg-white pb-[65px]">
@@ -95,9 +99,6 @@ export const VerificationScreen = ({navigation}: any) => {
         <Text className="font-FontLight text-[14px] text-center px-[50px] text-primaryBlack">
           Please enter the 4 digit code sent to your phone number
         </Text>
-        <Text className="font-FontLight text-[14px] text-center px-[50px] text-primaryBlack">
-          OTP:{getOtp}
-        </Text>
       </View>
 
       <View className="flex flex-col items-center justify-center">
@@ -105,6 +106,7 @@ export const VerificationScreen = ({navigation}: any) => {
           ref={ref}
           {...props}
           value={getOtp}
+          autoFocus={true}
           onChangeText={setValue}
           cellCount={CELL_COUNT}
           keyboardType="number-pad"

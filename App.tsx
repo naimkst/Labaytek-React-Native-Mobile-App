@@ -18,7 +18,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="Verify"
+        initialRouteName="Start"
         screenOptions={({route}: any) => ({
           tabBarIcon: ({focused, color, size}) => {
             let iconName = '';

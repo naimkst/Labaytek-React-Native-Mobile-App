@@ -40,7 +40,9 @@ const CELL_COUNT = 4;
 
 export const VerificationScreen = ({navigation}: any) => {
   const [value, setValue] = useState('');
-  const [getOtp, setOtp] = useState('');
+  const [getOtp, setOtp] = useState<any>('');
+  const [getHashs, setHash] = useState('');
+  const [getMessage, setMessage] = useState('');
   const ref: any = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
@@ -60,24 +62,20 @@ export const VerificationScreen = ({navigation}: any) => {
       );
     }
   };
+  const {hash, otp, message, timeoutError, stopListener, startListener} =
+    useOtpVerify({numberOfDigits: 4});
 
-  // using methods
-  // useEffect(() => {
-  //   getHash()
-  //     .then(hash => {
-  //       // use this hash in the message.
-  //     })
-  //     .catch(console.log);
+  console.log('hash', hash, otp, message, timeoutError);
 
-  //   startOtpListener(message => {
-  //     // extract the otp using regex e.g. the below regex extracts 4 digit otp from message
+  const text = message;
+  const fourDigitRegex = /\b\d{4}\b/g;
+  //@ts-ignore
+  const codes = text?.match(fourDigitRegex)[0];
 
-  //     //@ts-ignore
-  //     const otp = /(\d{4})/g.exec(message)[1];
-  //     setOtp(otp);
-  //   });
-  //   return () => removeListener();
-  // }, []);
+  console.log(otp, 'Read message####');
+  useEffect(() => {
+    setOtp(otp);
+  }, [message, otp, getOtp]);
 
   return (
     <View className="flex flex-col items-center justify-between py-[40px] h-full bg-white pb-[65px]">
@@ -97,13 +95,16 @@ export const VerificationScreen = ({navigation}: any) => {
         <Text className="font-FontLight text-[14px] text-center px-[50px] text-primaryBlack">
           Please enter the 4 digit code sent to your phone number
         </Text>
+        <Text className="font-FontLight text-[14px] text-center px-[50px] text-primaryBlack">
+          OTP:{getOtp}
+        </Text>
       </View>
 
       <View className="flex flex-col items-center justify-center">
         <CodeField
           ref={ref}
           {...props}
-          value={'2321'}
+          value={getOtp}
           onChangeText={setValue}
           cellCount={CELL_COUNT}
           keyboardType="number-pad"

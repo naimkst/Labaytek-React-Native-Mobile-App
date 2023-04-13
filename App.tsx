@@ -7,7 +7,6 @@ import {HomeScreen} from './src/pages/HomeScreen';
 import {InfoScreen} from './src/pages/InfoScreen';
 import {LoginScreen} from './src/pages/LoginScreen';
 import {VerificationScreen} from './src/pages/VerificationScreen';
-import {Navigation} from './src/components/GlobalComponent/Navigation';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {COLORS} from './src/helper/color';
@@ -19,7 +18,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="Navigation"
+        initialRouteName="Verify"
         screenOptions={({route}: any) => ({
           tabBarIcon: ({focused, color, size}) => {
             let iconName = '';
@@ -41,9 +40,6 @@ const App = () => {
             height: 50,
             shadowColor: 'transparent',
           },
-        })}
-        //@ts-ignore
-        tabBarOptions={{
           activeTintColor: COLORS.primaryColor,
           inactiveTintColor: COLORS.secondaryGray,
           showLabel: false,
@@ -53,7 +49,9 @@ const App = () => {
             paddingBottom: 20,
             paddingTop: 10,
           },
-        }}>
+        })}
+        //@ts-ignore
+      >
         <Tab.Screen
           name="Home"
           component={HomeScreen}

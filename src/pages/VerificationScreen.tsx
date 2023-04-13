@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {
   CodeField,
@@ -7,6 +7,14 @@ import {
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
 import {COLORS} from '../helper/color';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Alert} from 'react-native';
+import {
+  getHash,
+  removeListener,
+  startOtpListener,
+  useOtpVerify,
+} from 'react-native-otp-verify';
 
 const styles = StyleSheet.create({
   root: {flex: 1, padding: 20},
@@ -32,11 +40,45 @@ const CELL_COUNT = 4;
 
 export const VerificationScreen = ({navigation}: any) => {
   const [value, setValue] = useState('');
+  const [getOtp, setOtp] = useState('');
   const ref: any = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
+  const verfiryCode = async () => {
+    let user = await AsyncStorage.getItem('code');
+    if (user === value) {
+      AsyncStorage.setItem('isLogin', JSON.stringify('true'));
+      navigation.navigate('Home');
+    } else {
+      Alert.alert(
+        'Code Not Verified',
+        'Please enter the correct code',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+        {cancelable: false},
+      );
+    }
+  };
+
+  // using methods
+  // useEffect(() => {
+  //   getHash()
+  //     .then(hash => {
+  //       // use this hash in the message.
+  //     })
+  //     .catch(console.log);
+
+  //   startOtpListener(message => {
+  //     // extract the otp using regex e.g. the below regex extracts 4 digit otp from message
+
+  //     //@ts-ignore
+  //     const otp = /(\d{4})/g.exec(message)[1];
+  //     setOtp(otp);
+  //   });
+  //   return () => removeListener();
+  // }, []);
+
   return (
     <View className="flex flex-col items-center justify-between py-[40px] h-full bg-white pb-[65px]">
       <View className="text-center">
@@ -61,7 +103,7 @@ export const VerificationScreen = ({navigation}: any) => {
         <CodeField
           ref={ref}
           {...props}
-          value={value}
+          value={'2321'}
           onChangeText={setValue}
           cellCount={CELL_COUNT}
           keyboardType="number-pad"
@@ -81,9 +123,11 @@ export const VerificationScreen = ({navigation}: any) => {
       <View className="w-full">
         <View className="flex justify-center items-center">
           <Text
+            onPress={() => verfiryCode()}
             className="font-FontNormal bg-primaryColor w-[90%] py-[20px] flex items-center text-center justify-center text-white text-[20px] left-0 overflow-hidden"
             style={{borderRadius: 10}}
-            onPress={() => navigation.navigate('Home')}>
+            // onPress={() => navigation.navigate('Home')}
+          >
             Verify Code
           </Text>
         </View>

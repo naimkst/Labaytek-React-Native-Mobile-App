@@ -3,6 +3,7 @@ import {Image, Text, View} from 'react-native';
 import PhoneInput from 'react-native-phone-number-input';
 import {Button} from '../components/GlobalComponent/Button';
 import {COLORS} from '../helper/color';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const LoginScreen = ({navigation}: any) => {
   const [value, setValue] = useState('');
@@ -10,7 +11,36 @@ export const LoginScreen = ({navigation}: any) => {
   const phoneInput = useRef<PhoneInput>(null);
 
   const countryPickerProps = {
-    countryCodes: ['KW', 'AE', 'OM', 'SA', 'QA', 'BH'],
+    countryCodes: ['KW', 'AE', 'OM', 'SA', 'QA', 'BH', 'BD'],
+  };
+
+  const fetchOtp = async () => {
+    console.log('formattedValue', formattedValue);
+    const min = 1000;
+    const max = 9999;
+    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    AsyncStorage.setItem('code', JSON.stringify(randomNumber));
+    let user = await AsyncStorage.getItem('code');
+    console.log('randomNumber', user);
+
+    try {
+      let response = await fetch('https://e8f9-103-178-242-7.ngrok-free.app', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          phone: formattedValue,
+          code: randomNumber,
+        }),
+      });
+      let responseJson = await response.json();
+      console.log('responseJson', responseJson);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -59,16 +89,43 @@ export const LoginScreen = ({navigation}: any) => {
           withShadow
           autoFocus
         />
+
+        {!value && (
+          <Text
+            style={{
+              marginTop: 5,
+              color: 'red',
+              fontFamily: 'FontNormal',
+              marginBottom: 15,
+            }}>
+            Please enter your phone number
+          </Text>
+        )}
       </View>
 
       <View className="w-full">
         <View className="flex justify-center items-center">
-          <Text
-            className="font-FontNormal bg-primaryColor w-[90%] py-[20px] flex items-center text-center justify-center text-white text-[20px] left-0 overflow-hidden"
-            style={{borderRadius: 10}}
-            onPress={() => navigation.navigate('Verify')}>
-            Request OTP
-          </Text>
+          {value ? (
+            <Text
+              className={`${
+                !value ? 'bg-primaryColor/40' : 'bg-primaryColor'
+              } font-FontNormal  w-[90%] py-[20px] flex items-center text-center justify-center text-white text-[20px] left-0 overflow-hidden`}
+              style={{borderRadius: 10}}
+              onPress={() => {
+                fetchOtp();
+                navigation.navigate('Verify');
+              }}>
+              Request OTP
+            </Text>
+          ) : (
+            <Text
+              className={`${
+                !value ? 'bg-primaryColor/40' : 'bg-primaryColor'
+              } font-FontNormal  w-[90%] py-[20px] flex items-center text-center justify-center text-white text-[20px] left-0 overflow-hidden`}
+              style={{borderRadius: 10}}>
+              Request OTP
+            </Text>
+          )}
         </View>
 
         <View className="flex flex-row gap-1 mt-5 text-center items-center justify-center">

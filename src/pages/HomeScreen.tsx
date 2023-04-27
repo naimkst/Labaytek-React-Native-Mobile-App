@@ -8,8 +8,14 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {SelectedSection} from '../components/Home/SelectedSection';
 import {SearchSection} from '../components/GlobalComponent/SearchBar';
 import {OnSaleSection} from '../components/Home/OnSaleSection';
+import useFetch from '../hooks/useFetch';
+import {api_url, consumer_key, consumer_secret} from '../helper/env';
 
 export const HomeScreen = () => {
+  // const {data, loading, error} = useFetch(
+  //   `${api_url}/products/categories?consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
+  // );
+
   return (
     <SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false}>

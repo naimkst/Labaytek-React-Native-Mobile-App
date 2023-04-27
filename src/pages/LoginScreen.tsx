@@ -25,7 +25,7 @@ export const LoginScreen = ({navigation}: any) => {
     console.log('randomNumber', user);
 
     try {
-      let response = await fetch('https://d319-103-178-242-7.ngrok-free.app', {
+      let response = await fetch('https://72ff-103-178-242-6.ngrok-free.app', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

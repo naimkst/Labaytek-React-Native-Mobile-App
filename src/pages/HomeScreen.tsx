@@ -10,24 +10,49 @@ import {SearchSection} from '../components/GlobalComponent/SearchBar';
 import {OnSaleSection} from '../components/Home/OnSaleSection';
 import useFetch from '../hooks/useFetch';
 import {api_url, consumer_key, consumer_secret} from '../helper/env';
+import Loader from '../components/GlobalComponent/Loader';
 
 export const HomeScreen = () => {
-  // const {data, loading, error} = useFetch(
-  //   `${api_url}/products/categories?consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
-  // );
-
-  return (
-    <SafeAreaView>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View className="mb-[65px]">
-          <HeroSlider />
-          <SearchSection />
-          <CategorySlider />
-          <DeveliverySection />
-          <SelectedSection />
-          <OnSaleSection />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+  const {
+    data: deliveryData,
+    loading: deliveryLoading,
+    error: deliveryError,
+  } = useFetch(
+    `${api_url}/products?category=2323&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
   );
+
+  const {
+    data: forYouData,
+    loading: forYouLoading,
+    error: forYouError,
+  } = useFetch(
+    `${api_url}/products/categories?consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
+  );
+
+  const {
+    data: onSaleData,
+    loading: onSaleLoading,
+    error: onSaleError,
+  } = useFetch(
+    `${api_url}/products?on_sale=true&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
+  );
+
+  if (deliveryLoading && forYouLoading && onSaleLoading) {
+    return <Loader />;
+  } else {
+    return (
+      <SafeAreaView>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View className="mb-[65px]">
+            <HeroSlider />
+            <SearchSection />
+            <CategorySlider />
+            <DeveliverySection data={deliveryData} />
+            <SelectedSection data={forYouData} />
+            <OnSaleSection data={onSaleData} />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
 };

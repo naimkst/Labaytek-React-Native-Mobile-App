@@ -4,7 +4,7 @@ import {SelectedGrid} from '../GlobalComponent/SelectedGrid';
 import {OnSaleGrid} from '../GlobalComponent/OnSaleGrid';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-export const OnSaleSection = () => {
+export const OnSaleSection = ({data}: any) => {
   return (
     <View>
       <View className="flex flex-row justify-between px-[10px] mt-[30px]">
@@ -17,7 +17,7 @@ export const OnSaleSection = () => {
       </View>
 
       <View className="mt-[20px]">
-        <OnSaleGrid />
+        <OnSaleGrid data={data} />
       </View>
       {/* 
       <View>

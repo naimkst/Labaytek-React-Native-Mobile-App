@@ -3,26 +3,7 @@ import {Image, Text, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {COLORS} from '../../helper/color';
 
-const data = [
-  {
-    image: require('../../assets/images/product01.png'),
-    title: 'Oulu Dining Chair',
-  },
-  {
-    image: require('../../assets/images/product1.jpg'),
-    title: 'Jada Arm Chair',
-  },
-  {
-    image: require('../../assets/images/product03.png'),
-    title: 'Froge Towel Rack',
-  },
-  {
-    image: require('../../assets/images/product04.png'),
-    title: 'High waist trousers',
-  },
-];
-
-export const SelectedGrid = () => {
+export const SelectedGrid = ({data}: any) => {
   return (
     <View
       className="max-w-[100%]"
@@ -37,7 +18,7 @@ export const SelectedGrid = () => {
           flexWrap: 'wrap',
           justifyContent: 'space-between',
         }}>
-        {data?.map((item: any, index: number) => (
+        {data?.slice(0, 6)?.map((item: any, index: number) => (
           <View
             key={`selected${index}`}
             style={{
@@ -51,20 +32,33 @@ export const SelectedGrid = () => {
               borderRadius: 10,
               marginBottom: 15,
             }}>
-            <Image
-              style={{
-                borderRadius: 10,
-              }}
-              className=" w-[65px] h-[65px]"
-              source={item.image}
-            />
+            {item?.image?.src ? (
+              <Image
+                style={{
+                  borderRadius: 10,
+                }}
+                className=" w-[65px] h-[65px]"
+                source={{
+                  uri: item?.image?.src,
+                }}
+              />
+            ) : (
+              <Image
+                style={{
+                  borderRadius: 10,
+                }}
+                className=" w-[65px] h-[65px]"
+                source={require('../../assets/images/product04.png')}
+              />
+            )}
+
             <View
               style={{
                 maxWidth: '70%',
                 paddingRight: 20,
               }}>
               <Text className="text-[17px] font-FontNormal text-primaryBlack">
-                {item.title}
+                {item.name}
               </Text>
             </View>
           </View>

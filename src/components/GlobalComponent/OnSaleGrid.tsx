@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {COLORS} from '../../helper/color';
+import {getPrice} from '../../helper/functions';
 
 const data = [
   {
@@ -34,7 +35,7 @@ const data = [
     price: '$ 200',
   },
 ];
-export const OnSaleGrid = () => {
+export const OnSaleGrid = ({data}: any) => {
   return (
     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
       <View className="flex flex-row gap-[15px] max-w-full px-[10px] relative">
@@ -45,16 +46,17 @@ export const OnSaleGrid = () => {
             <Image
               style={{resizeMode: 'cover'}}
               className="overflow-hidden w-full p-0 m-0 h-[140px] mb-2"
-              source={item.image}
+              source={{
+                uri: item.images[0].src,
+              }}
             />
             <Text className="mt-2 text-[18px] font-FontBold text-primaryBlack">
-              {item.title}
+              {item.name}
             </Text>
-            <Text className="mt-2 text-[15px] font-FontLight text-primaryBlack">
-              {item.description}
-            </Text>
+
             <View className="mt-[16px] flex flex-row justify-between items-center">
               <Text className="mt-2 text-[18px] font-FontBold text-primaryBlack">
+                {getPrice(item.price_html)}
                 {item.price}
               </Text>
               <Image

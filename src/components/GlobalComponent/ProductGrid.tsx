@@ -5,8 +5,6 @@ import {COLORS} from '../../helper/color';
 import {getPrice} from '../../helper/functions';
 
 export const ProductGrid = ({data}: any) => {
-  console.log(data);
-
   return (
     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
       <View className="flex flex-row gap-[15px] max-w-full px-[10px]">

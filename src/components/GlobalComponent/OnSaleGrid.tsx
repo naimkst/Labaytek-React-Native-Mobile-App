@@ -73,9 +73,9 @@ export const OnSaleGrid = ({data}: any) => {
               />
             </View>
 
-            <View className="absolute top-1 right-0 bg-primaryColor px-[8px] py-[5px] rounded-l-full">
+            {/* <View className="absolute top-1 right-0 bg-primaryColor px-[8px] py-[5px] rounded-l-full">
               <Text className="text-white font-FontNormal">50% OFF</Text>
-            </View>
+            </View> */}
           </View>
         ))}
       </View>

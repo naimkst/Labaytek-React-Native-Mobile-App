@@ -10,6 +10,7 @@ import {VerificationScreen} from './src/pages/VerificationScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {COLORS} from './src/helper/color';
+import CategoriesScreen from './src/pages/CategoriesScreen';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
@@ -76,6 +77,11 @@ const App = () => {
         <Tab.Screen
           name="Verify"
           component={VerificationScreen}
+          options={{headerShown: false, tabBarButton: () => null}}
+        />
+        <Tab.Screen
+          name="Category"
+          component={CategoriesScreen}
           options={{headerShown: false, tabBarButton: () => null}}
         />
       </Tab.Navigator>

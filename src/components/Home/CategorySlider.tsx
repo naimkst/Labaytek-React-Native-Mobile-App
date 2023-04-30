@@ -1,8 +1,10 @@
 import React from 'react';
-import {Image, ScrollView, Text, View} from 'react-native';
+import {Image, ScrollView, Text, View, TouchableOpacity} from 'react-native';
 import {COLORS} from '../../helper/color';
+import {useNavigation} from '@react-navigation/native';
 
 export const CategorySlider = () => {
+  const navigation: any = useNavigation();
   return (
     <ScrollView
       scrollEnabled
@@ -11,7 +13,9 @@ export const CategorySlider = () => {
       showsHorizontalScrollIndicator={false}>
       <View className="flex flex-row gap-2 mr-[20px]">
         <View className="flex flex-row gap-2 items-center bg-primaryColor pb-2 pt-1 rounded-full px-[20px]">
-          <Text className="font-FontBold text-[18px] text-white">
+          <Text
+            onPress={() => navigation.navigate('Category')}
+            className="font-FontBold text-[18px] text-white">
             All Categories
           </Text>
           <Image

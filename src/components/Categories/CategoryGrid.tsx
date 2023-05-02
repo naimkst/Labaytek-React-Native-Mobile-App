@@ -5,23 +5,30 @@ const CategoryGrid = ({data, index}: any) => {
   console.log(data);
 
   return (
-    <View
-      key={index}
-      className="flex items-center justify-start bg-gray-100/70 rounded-[10px] flex-row px-[10px] py-[10px] mb-[15px]">
+    <View className="w-[50%] p-[5px] mb-[20px]">
       <View>
+        <Text className="text-[20px] font-FontBold text-primaryBlack text-center pb-2">
+          {data?.name}
+        </Text>
         <Image
-          style={{resizeMode: 'contain'}}
-          className="w-[100px] p-0 h-[100px] mr-[15px]"
+          style={{resizeMode: 'cover'}}
           source={{
             uri: data?.image?.src
               ? data?.image?.src
-              : 'https://ouch-cdn2.icons8.com/Couu-ZozA6dkhSDCDrrKyh4JjR69LQnnKzLw8xCBp-A/rs:fit:256:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvODY0/LzQ2YzMzNDNkLTc0/ZjQtNGEzNi1iNmY2/LTdjOGE2ZTkyNzVm/YS5wbmc.png',
+              : 'https://photo-cdn2.icons8.com/-fEalJLBvu-lIO4QOjsCJ_2ea96VEyk7WmQqSrrsrTo/rs:fit:576:384/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5h/c3NldHMvYXNzZXRz/L3NhdGEvb3JpZ2lu/YWwvMjgwLzllZGU1/ZTAyLTFiNDEtNGFi/Ni1iYTlmLTZiOGU0/ZjdmN2UyNi5qcGc.webp',
           }}
+          className="w-full h-[150px]"
         />
       </View>
-      <Text className="mt-2 text-[22px] font-FontBold text-primaryBlack">
-        {data?.name}
-      </Text>
+      <View className="pt-[5px] flex gap-[5px]">
+        <Text className="font-FontNormal">Sofa</Text>
+        <Text className="font-FontNormal">Sofa</Text>
+        <Text className="font-FontNormal">Sofa</Text>
+        <Text className="font-FontNormal">Sofa</Text>
+        <Text className="font-FontBold text-primaryBlack">
+          See All Living Room
+        </Text>
+      </View>
     </View>
   );
 };

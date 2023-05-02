@@ -11,7 +11,7 @@ import Loader from '../components/GlobalComponent/Loader';
 
 const CategoriesScreen = () => {
   const {data, loading, error} = useFetch(
-    `${api_url}/products/categories?consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
+    `${api_url}/products/categories?per_page=100&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
   );
 
   if (loading) {
@@ -24,7 +24,7 @@ const CategoriesScreen = () => {
           <View>
             <SearchSection />
           </View>
-          <View className="mt-[10px] px-[10px]">
+          <View className="mt-[10px] px-[5px] flex flex-row flex-wrap">
             {data?.map((item: any, index: any) => (
               <CategoryGrid data={item} index={index} />
             ))}

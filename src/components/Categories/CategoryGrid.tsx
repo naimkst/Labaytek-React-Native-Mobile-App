@@ -1,11 +1,20 @@
 import {View, Text, Image} from 'react-native';
 import React from 'react';
+import useFetch from '../../hooks/useFetch';
+import {api_url, consumer_key, consumer_secret} from '../../helper/env';
 
 const CategoryGrid = ({data, index}: any) => {
-  console.log(data);
+  const {
+    data: subCat,
+    loading,
+    error,
+  } = useFetch(
+    `${api_url}/products/categories/${data?.parent}?consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
+  );
+  console.log('################', data.children);
 
   return (
-    <View className="w-[50%] p-[5px] mb-[20px]">
+    <View key={`cat${index}`} className="w-[50%] p-[5px] mb-[20px]">
       <View>
         <Text className="text-[20px] font-FontBold text-primaryBlack text-center pb-2">
           {data?.name}
@@ -21,7 +30,13 @@ const CategoryGrid = ({data, index}: any) => {
         />
       </View>
       <View className="pt-[5px] flex gap-[5px]">
-        <Text className="font-FontNormal">Sofa</Text>
+        <View>
+          {data?.children?.map((subcategory: any, index: number) => (
+            <Text key={subcategory.id} className="font-FontNormal">
+              {subcategory.name}
+            </Text>
+          ))}
+        </View>
         <Text className="font-FontNormal">Sofa</Text>
         <Text className="font-FontNormal">Sofa</Text>
         <Text className="font-FontNormal">Sofa</Text>

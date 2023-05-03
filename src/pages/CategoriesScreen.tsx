@@ -10,11 +10,13 @@ import useFetch from '../hooks/useFetch';
 import Loader from '../components/GlobalComponent/Loader';
 
 const CategoriesScreen = () => {
+  const [search, setSearch] = React.useState('');
   const {data, loading, error} = useFetch(
-    `${api_url}/products/categories?per_page=50&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
+    `${api_url}/products/categories?per_page=50&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}&search=${search}`,
   );
 
-  if (loading) {
+  console.log('################', search);
+  if (search ? false : loading) {
     return <Loader />;
   } else {
     return (
@@ -22,7 +24,7 @@ const CategoriesScreen = () => {
         <SafeAreaView>
           <HeroSection title="Categories" />
           <View>
-            <SearchSection />
+            <SearchSection setSearch={setSearch} />
           </View>
           <View className="mt-[10px] px-[5px] flex flex-row flex-wrap">
             {data.map((category: any, index: any) => (

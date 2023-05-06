@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {SearchSection} from '../components/GlobalComponent/SearchBar';
@@ -8,14 +8,12 @@ import CategoryGrid from '../components/Categories/CategoryGrid';
 import {api_url, consumer_key, consumer_secret} from '../helper/env';
 import useFetch from '../hooks/useFetch';
 import Loader from '../components/GlobalComponent/Loader';
-import SubCategoryScreen from './SubCategoryScreen';
-import {useNavigation} from '@react-navigation/native';
 
-const CategoriesScreen = () => {
-  const navigation: any = useNavigation();
+const SubCategoryScreen = ({route, navigation}: any) => {
+  const {catId} = route.params;
   const [search, setSearch] = React.useState('');
   const {data, loading, error} = useFetch(
-    `${api_url}/products/categories?per_page=50&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}&search=${search}`,
+    `${api_url}/products/categories?per_page=50&parent=${catId}&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}&search=${search}`,
   );
 
   if (search ? false : loading) {
@@ -64,10 +62,10 @@ const CategoriesScreen = () => {
                     ))}
                   <Text
                     onPress={() =>
-                      navigation.navigate('SubCategory', {catId: category.id})
+                      navigation.navigate('Product', {catId: category.id})
                     }
                     className="font-FontBold text-primaryBlack">
-                    See All {category?.name}
+                    See All Living Room
                   </Text>
                 </View>
               </View>
@@ -79,6 +77,6 @@ const CategoriesScreen = () => {
   }
 };
 
-export default CategoriesScreen;
+export default SubCategoryScreen;
 
 const styles = StyleSheet.create({});

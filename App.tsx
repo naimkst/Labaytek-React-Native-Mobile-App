@@ -11,6 +11,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {COLORS} from './src/helper/color';
 import CategoriesScreen from './src/pages/CategoriesScreen';
+import SubCategoryScreen from './src/pages/SubCategoryScreen';
+import ProductScreen from './src/pages/ProductScreen';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
@@ -55,7 +57,7 @@ const App = () => {
       >
         <Tab.Screen
           name="Home"
-          component={HomeScreen}
+          component={ProductScreen}
           options={{headerShown: false}}
         />
         <Tab.Screen
@@ -82,6 +84,16 @@ const App = () => {
         <Tab.Screen
           name="Category"
           component={CategoriesScreen}
+          options={{headerShown: false, tabBarButton: () => null}}
+        />
+        <Tab.Screen
+          name="SubCategory"
+          component={SubCategoryScreen}
+          options={{headerShown: false, tabBarButton: () => null}}
+        />
+        <Tab.Screen
+          name="Product"
+          component={ProductScreen}
           options={{headerShown: false, tabBarButton: () => null}}
         />
       </Tab.Navigator>

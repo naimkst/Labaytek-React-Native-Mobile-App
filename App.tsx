@@ -57,7 +57,7 @@ const App = () => {
       >
         <Tab.Screen
           name="Home"
-          component={ProductScreen}
+          component={CategoriesScreen}
           options={{headerShown: false}}
         />
         <Tab.Screen

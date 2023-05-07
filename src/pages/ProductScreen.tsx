@@ -12,19 +12,21 @@ import SubCategoryScreen from './SubCategoryScreen';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {COLORS} from '../helper/color';
+import {getPrice} from '../helper/functions';
 
-const ProductScreen = () => {
+const ProductScreen = ({route}: any) => {
+  const {catId} = route.params;
   const navigation: any = useNavigation();
   const [isSiderBar, setIsSiderBar] = React.useState(false);
   const {width, height} = Dimensions.get('window');
 
   const [search, setSearch] = React.useState('');
   const {data, loading, error} = useFetch(
-    `${api_url}/products/categories?per_page=50&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}&search=${search}`,
+    `${api_url}/products?category=${catId}&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}&search=${search}`,
   );
-  console.log(height);
+  console.log(catId);
 
-  if (search ? false : false) {
+  if (search ? false : loading) {
     return <Loader />;
   } else {
     return (
@@ -127,197 +129,38 @@ const ProductScreen = () => {
             {/* Products Grid */}
 
             <View className="flex flex-row flex-wrap relative mb-[60px]">
-              <View className="w-[50%] pl-[10px] pr-[5px]">
-                <View>
-                  <Image
-                    className="w-full h-[200px]"
-                    source={{
-                      uri: 'https://photo-cdn2.icons8.com/-fEalJLBvu-lIO4QOjsCJ_2ea96VEyk7WmQqSrrsrTo/rs:fit:576:384/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5h/c3NldHMvYXNzZXRz/L3NhdGEvb3JpZ2lu/YWwvMjgwLzllZGU1/ZTAyLTFiNDEtNGFi/Ni1iYTlmLTZiOGU0/ZjdmN2UyNi5qcGc.webp',
-                    }}
-                  />
-                </View>
-                <View>
-                  <Text className="font-FontBold text-primaryBlack text-[18px] py-[7px]">
-                    Dining Chair - DDC0321
-                  </Text>
-                  <View className="flex flex-row justify-between items-center">
-                    <Text className="font-FontBold text-primaryBlack text-[18px] py-[7px]">
-                      $9.90
+              {data?.map((item: any, index: number) => (
+                <View
+                  className={`w-[50%] ${
+                    index % 2 == 0 ? 'pl-[10px] pr-[5px]' : 'pl-[5px] pr-[10px]'
+                  }  mb-[20px]`}>
+                  <View>
+                    <Image
+                      style={{width: '100%', height: 200, resizeMode: 'cover'}}
+                      className="w-full h-[200px]"
+                      source={{
+                        uri: item.images[0].src
+                          ? item.images[0].src
+                          : 'https://photo-cdn2.icons8.com/-fEalJLBvu-lIO4QOjsCJ_2ea96VEyk7WmQqSrrsrTo/rs:fit:576:384/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5h/c3NldHMvYXNzZXRz/L3NhdGEvb3JpZ2lu/YWwvMjgwLzllZGU1/ZTAyLTFiNDEtNGFi/Ni1iYTlmLTZiOGU0/ZjdmN2UyNi5qcGc.webp',
+                      }}
+                    />
+                  </View>
+                  <View>
+                    <Text className="font-FontBold text-primaryBlack text-[18px] leading-[20px] py-[7px]">
+                      {item.name}
                     </Text>
-                    <View className="bg-primaryBlack flex p-[7px] rounded-full items-center w-[35px] h-[35px]">
-                      <Icon name="shoppingcart" size={22} color={'#fff'} />
+                    <View className="flex flex-row justify-between items-center">
+                      <Text className="font-FontBold text-primaryBlack text-[18px] py-[7px]">
+                        {getPrice(item.price_html)}
+                        {item.price}
+                      </Text>
+                      <View className="bg-primaryBlack flex p-[7px] rounded-full items-center w-[35px] h-[35px]">
+                        <Icon name="shoppingcart" size={22} color={'#fff'} />
+                      </View>
                     </View>
                   </View>
                 </View>
-              </View>
-
-              <View className="w-[50%] pl-[5px] pr-[10px]">
-                <View>
-                  <Image
-                    className="w-full h-[200px]"
-                    source={{
-                      uri: 'https://photo-cdn2.icons8.com/-fEalJLBvu-lIO4QOjsCJ_2ea96VEyk7WmQqSrrsrTo/rs:fit:576:384/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5h/c3NldHMvYXNzZXRz/L3NhdGEvb3JpZ2lu/YWwvMjgwLzllZGU1/ZTAyLTFiNDEtNGFi/Ni1iYTlmLTZiOGU0/ZjdmN2UyNi5qcGc.webp',
-                    }}
-                  />
-                </View>
-                <View>
-                  <Text className="font-FontBold text-primaryBlack text-[20px] py-[10px]">
-                    Dining Chair - DDC0321
-                  </Text>
-                  <View className="flex flex-row justify-between items-center">
-                    <Text className="font-FontBold text-primaryBlack text-[20px] py-[10px]">
-                      $9.90
-                    </Text>
-                    <View className="bg-primaryBlack flex p-[7px] rounded-full items-center w-[35px] h-[35px]">
-                      <Icon name="shoppingcart" size={22} color={'#fff'} />
-                    </View>
-                  </View>
-                </View>
-              </View>
-
-              <View className="w-[50%] pl-[10px] pr-[5px]">
-                <View>
-                  <Image
-                    className="w-full h-[200px]"
-                    source={{
-                      uri: 'https://photo-cdn2.icons8.com/-fEalJLBvu-lIO4QOjsCJ_2ea96VEyk7WmQqSrrsrTo/rs:fit:576:384/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5h/c3NldHMvYXNzZXRz/L3NhdGEvb3JpZ2lu/YWwvMjgwLzllZGU1/ZTAyLTFiNDEtNGFi/Ni1iYTlmLTZiOGU0/ZjdmN2UyNi5qcGc.webp',
-                    }}
-                  />
-                </View>
-                <View>
-                  <Text className="font-FontBold text-primaryBlack text-[18px] py-[7px]">
-                    Dining Chair - DDC0321
-                  </Text>
-                  <View className="flex flex-row justify-between items-center">
-                    <Text className="font-FontBold text-primaryBlack text-[18px] py-[7px]">
-                      $9.90
-                    </Text>
-                    <View className="bg-primaryBlack flex p-[7px] rounded-full items-center w-[35px] h-[35px]">
-                      <Icon name="shoppingcart" size={22} color={'#fff'} />
-                    </View>
-                  </View>
-                </View>
-              </View>
-
-              <View className="w-[50%] pl-[5px] pr-[10px]">
-                <View>
-                  <Image
-                    className="w-full h-[200px]"
-                    source={{
-                      uri: 'https://photo-cdn2.icons8.com/-fEalJLBvu-lIO4QOjsCJ_2ea96VEyk7WmQqSrrsrTo/rs:fit:576:384/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5h/c3NldHMvYXNzZXRz/L3NhdGEvb3JpZ2lu/YWwvMjgwLzllZGU1/ZTAyLTFiNDEtNGFi/Ni1iYTlmLTZiOGU0/ZjdmN2UyNi5qcGc.webp',
-                    }}
-                  />
-                </View>
-                <View>
-                  <Text className="font-FontBold text-primaryBlack text-[20px] py-[10px]">
-                    Dining Chair - DDC0321
-                  </Text>
-                  <View className="flex flex-row justify-between items-center">
-                    <Text className="font-FontBold text-primaryBlack text-[20px] py-[10px]">
-                      $9.90
-                    </Text>
-                    <View className="bg-primaryBlack flex p-[7px] rounded-full items-center w-[35px] h-[35px]">
-                      <Icon name="shoppingcart" size={22} color={'#fff'} />
-                    </View>
-                  </View>
-                </View>
-              </View>
-
-              <View className="w-[50%] pl-[10px] pr-[5px]">
-                <View>
-                  <Image
-                    className="w-full h-[200px]"
-                    source={{
-                      uri: 'https://photo-cdn2.icons8.com/-fEalJLBvu-lIO4QOjsCJ_2ea96VEyk7WmQqSrrsrTo/rs:fit:576:384/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5h/c3NldHMvYXNzZXRz/L3NhdGEvb3JpZ2lu/YWwvMjgwLzllZGU1/ZTAyLTFiNDEtNGFi/Ni1iYTlmLTZiOGU0/ZjdmN2UyNi5qcGc.webp',
-                    }}
-                  />
-                </View>
-                <View>
-                  <Text className="font-FontBold text-primaryBlack text-[18px] py-[7px]">
-                    Dining Chair - DDC0321
-                  </Text>
-                  <View className="flex flex-row justify-between items-center">
-                    <Text className="font-FontBold text-primaryBlack text-[18px] py-[7px]">
-                      $9.90
-                    </Text>
-                    <View className="bg-primaryBlack flex p-[7px] rounded-full items-center w-[35px] h-[35px]">
-                      <Icon name="shoppingcart" size={22} color={'#fff'} />
-                    </View>
-                  </View>
-                </View>
-              </View>
-
-              <View className="w-[50%] pl-[5px] pr-[10px]">
-                <View>
-                  <Image
-                    className="w-full h-[200px]"
-                    source={{
-                      uri: 'https://photo-cdn2.icons8.com/-fEalJLBvu-lIO4QOjsCJ_2ea96VEyk7WmQqSrrsrTo/rs:fit:576:384/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5h/c3NldHMvYXNzZXRz/L3NhdGEvb3JpZ2lu/YWwvMjgwLzllZGU1/ZTAyLTFiNDEtNGFi/Ni1iYTlmLTZiOGU0/ZjdmN2UyNi5qcGc.webp',
-                    }}
-                  />
-                </View>
-                <View>
-                  <Text className="font-FontBold text-primaryBlack text-[20px] py-[10px]">
-                    Dining Chair - DDC0321
-                  </Text>
-                  <View className="flex flex-row justify-between items-center">
-                    <Text className="font-FontBold text-primaryBlack text-[20px] py-[10px]">
-                      $9.90
-                    </Text>
-                    <View className="bg-primaryBlack flex p-[7px] rounded-full items-center w-[35px] h-[35px]">
-                      <Icon name="shoppingcart" size={22} color={'#fff'} />
-                    </View>
-                  </View>
-                </View>
-              </View>
-
-              <View className="w-[50%] pl-[10px] pr-[5px]">
-                <View>
-                  <Image
-                    className="w-full h-[200px]"
-                    source={{
-                      uri: 'https://photo-cdn2.icons8.com/-fEalJLBvu-lIO4QOjsCJ_2ea96VEyk7WmQqSrrsrTo/rs:fit:576:384/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5h/c3NldHMvYXNzZXRz/L3NhdGEvb3JpZ2lu/YWwvMjgwLzllZGU1/ZTAyLTFiNDEtNGFi/Ni1iYTlmLTZiOGU0/ZjdmN2UyNi5qcGc.webp',
-                    }}
-                  />
-                </View>
-                <View>
-                  <Text className="font-FontBold text-primaryBlack text-[18px] py-[7px]">
-                    Dining Chair - DDC0321
-                  </Text>
-                  <View className="flex flex-row justify-between items-center">
-                    <Text className="font-FontBold text-primaryBlack text-[18px] py-[7px]">
-                      $9.90
-                    </Text>
-                    <View className="bg-primaryBlack flex p-[7px] rounded-full items-center w-[35px] h-[35px]">
-                      <Icon name="shoppingcart" size={22} color={'#fff'} />
-                    </View>
-                  </View>
-                </View>
-              </View>
-
-              <View className="w-[50%] pl-[5px] pr-[10px]">
-                <View>
-                  <Image
-                    className="w-full h-[200px]"
-                    source={{
-                      uri: 'https://photo-cdn2.icons8.com/-fEalJLBvu-lIO4QOjsCJ_2ea96VEyk7WmQqSrrsrTo/rs:fit:576:384/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5h/c3NldHMvYXNzZXRz/L3NhdGEvb3JpZ2lu/YWwvMjgwLzllZGU1/ZTAyLTFiNDEtNGFi/Ni1iYTlmLTZiOGU0/ZjdmN2UyNi5qcGc.webp',
-                    }}
-                  />
-                </View>
-                <View>
-                  <Text className="font-FontBold text-primaryBlack text-[20px] py-[10px]">
-                    Dining Chair - DDC0321
-                  </Text>
-                  <View className="flex flex-row justify-between items-center">
-                    <Text className="font-FontBold text-primaryBlack text-[20px] py-[10px]">
-                      $9.90
-                    </Text>
-                    <View className="bg-primaryBlack flex p-[7px] rounded-full items-center w-[35px] h-[35px]">
-                      <Icon name="shoppingcart" size={22} color={'#fff'} />
-                    </View>
-                  </View>
-                </View>
-              </View>
+              ))}
             </View>
           </View>
         </SafeAreaView>

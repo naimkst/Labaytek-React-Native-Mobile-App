@@ -19,12 +19,45 @@ const ProductScreen = ({route}: any) => {
   const navigation: any = useNavigation();
   const [isSiderBar, setIsSiderBar] = React.useState(false);
   const {width, height} = Dimensions.get('window');
-
   const [search, setSearch] = React.useState('');
+
   const {data, loading, error} = useFetch(
     `${api_url}/products?category=${catId}&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}&search=${search}`,
   );
-  console.log(catId);
+
+  const {data: filterData} = useFetch(
+    `${api_url}/products/attributes?&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}&search=${search}`,
+  );
+
+  const {
+    data: colorFilter,
+    loading: colorLoading,
+    error: filterEorro,
+  } = useFetch(
+    `${api_url}/products/attributes/35/terms?&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}&search=${search}`,
+  );
+  const {
+    data: deleveryFilter,
+    loading: delivaryLoading,
+    error: delevaryEorro,
+  } = useFetch(
+    `${api_url}/products/attributes/36/terms?&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}&search=${search}`,
+  );
+  const {
+    data: designFilter,
+    loading: designLoading,
+    error: designEorro,
+  } = useFetch(
+    `${api_url}/products/attributes/57/terms?&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}&search=${search}`,
+  );
+
+  const {
+    data: sizeFilter,
+    loading: sizeLoading,
+    error: sizeEorro,
+  } = useFetch(
+    `${api_url}/products/attributes/20/terms?&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}&search=${search}`,
+  );
 
   if (search ? false : loading) {
     return <Loader />;
@@ -67,60 +100,45 @@ const ProductScreen = ({route}: any) => {
                     <Text className="font-FontBold text-primaryBlack text-[27px] mb-[20px]">
                       Delivery
                     </Text>
-                    <Text className="text-[16px] font-FontNormal mb-[10px]">
-                      Filter
-                    </Text>
-                    <Text className="text-[16px] font-FontNormal mb-[10px]">
-                      Filter
-                    </Text>
-                    <Text className="text-[16px] font-FontNormal mb-[10px]">
-                      Filter
-                    </Text>
+                    {deleveryFilter?.map((item: any, index: any) => (
+                      <Text className="text-[16px] font-FontNormal mb-[10px]">
+                        {item?.name}
+                      </Text>
+                    ))}
                   </View>
 
                   <View className="mb-[30px]">
                     <Text className="font-FontBold text-primaryBlack text-[27px] mb-[20px]">
-                      Price
+                      Size
                     </Text>
-                    <Text className="text-[16px] font-FontNormal mb-[10px]">
-                      Filter
-                    </Text>
-                    <Text className="text-[16px] font-FontNormal mb-[10px]">
-                      Filter
-                    </Text>
-                    <Text className="text-[16px] font-FontNormal mb-[10px]">
-                      Filter
-                    </Text>
+                    {sizeFilter?.map((item: any, index: any) => (
+                      <Text className="text-[16px] font-FontNormal mb-[10px]">
+                        {item?.name} {item?.id}
+                      </Text>
+                    ))}
                   </View>
 
                   <View className="mb-[30px]">
                     <Text className="font-FontBold text-primaryBlack text-[27px] mb-[20px]">
                       Color
                     </Text>
-                    <Text className="text-[16px] font-FontNormal mb-[10px]">
-                      Filter
-                    </Text>
-                    <Text className="text-[16px] font-FontNormal mb-[10px]">
-                      Filter
-                    </Text>
-                    <Text className="text-[16px] font-FontNormal mb-[10px]">
-                      Filter
-                    </Text>
+
+                    {colorFilter?.map((item: any, index: any) => (
+                      <Text className="text-[16px] font-FontNormal mb-[10px]">
+                        {item?.name}
+                      </Text>
+                    ))}
                   </View>
 
                   <View className="mb-[30px]">
                     <Text className="font-FontBold text-primaryBlack text-[27px] mb-[20px]">
                       Style
                     </Text>
-                    <Text className="text-[16px] font-FontNormal mb-[10px]">
-                      Filter
-                    </Text>
-                    <Text className="text-[16px] font-FontNormal mb-[10px]">
-                      Filter
-                    </Text>
-                    <Text className="text-[16px] font-FontNormal mb-[10px]">
-                      Filter
-                    </Text>
+                    {designFilter?.map((item: any, index: any) => (
+                      <Text className="text-[16px] font-FontNormal mb-[10px]">
+                        {item?.name}
+                      </Text>
+                    ))}
                   </View>
                 </View>
               </View>

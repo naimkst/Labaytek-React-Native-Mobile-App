@@ -1,4 +1,11 @@
-import {Image, StyleSheet, Text, View, Dimensions} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -61,9 +68,6 @@ const ProductScreen = ({route}: any) => {
     `${api_url}/products/attributes/20/terms?&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}&search=${search}`,
   );
 
-  console.log('filterData', data?.length);
-  console.log('filterData', filterAttribute, filterTerm);
-
   if (search ? false : loading) {
     return <Loader />;
   } else {
@@ -102,22 +106,31 @@ const ProductScreen = ({route}: any) => {
                         : 'pl-[5px] pr-[10px]'
                     }  mb-[20px]`}>
                     <View>
-                      <Image
-                        style={{
-                          width: '100%',
-                          height: 200,
-                          resizeMode: 'cover',
-                        }}
-                        className="w-full h-[200px]"
-                        source={{
-                          uri: item.images[0].src
-                            ? item.images[0].src
-                            : 'https://photo-cdn2.icons8.com/-fEalJLBvu-lIO4QOjsCJ_2ea96VEyk7WmQqSrrsrTo/rs:fit:576:384/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5h/c3NldHMvYXNzZXRz/L3NhdGEvb3JpZ2lu/YWwvMjgwLzllZGU1/ZTAyLTFiNDEtNGFi/Ni1iYTlmLTZiOGU0/ZjdmN2UyNi5qcGc.webp',
-                        }}
-                      />
+                      <TouchableOpacity
+                        onPress={() =>
+                          navigation.navigate('SingleProduct', {data: item})
+                        }>
+                        <Image
+                          style={{
+                            width: '100%',
+                            height: 200,
+                            resizeMode: 'cover',
+                          }}
+                          className="w-full h-[200px]"
+                          source={{
+                            uri: item.images[0].src
+                              ? item.images[0].src
+                              : 'https://photo-cdn2.icons8.com/-fEalJLBvu-lIO4QOjsCJ_2ea96VEyk7WmQqSrrsrTo/rs:fit:576:384/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5h/c3NldHMvYXNzZXRz/L3NhdGEvb3JpZ2lu/YWwvMjgwLzllZGU1/ZTAyLTFiNDEtNGFi/Ni1iYTlmLTZiOGU0/ZjdmN2UyNi5qcGc.webp',
+                          }}
+                        />
+                      </TouchableOpacity>
                     </View>
                     <View>
-                      <Text className="font-FontBold text-primaryBlack text-[18px] leading-[20px] py-[7px]">
+                      <Text
+                        onPress={() =>
+                          navigation.navigate('SingleProduct', {data: item})
+                        }
+                        className="font-FontBold text-primaryBlack text-[18px] leading-[20px] py-[7px]">
                         {item.name}
                       </Text>
                       <View className="flex flex-row justify-between items-center">

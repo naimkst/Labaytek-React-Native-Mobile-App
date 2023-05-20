@@ -1,35 +1,89 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, Text, View} from 'react-native';
 import HeroSection from '../components/GlobalComponent/HeroSection';
 import {ScrollView} from 'react-native-gesture-handler';
 import useFetch from '../hooks/useFetch';
-import {api_url, consumer_key, consumer_secret} from '../helper/env';
+import {api_url, consumer_key, consumer_secret, store_url} from '../helper/env';
 import {SearchBar} from 'react-native-screens';
-import DropDownPicker from 'react-native-dropdown-picker';
 import {Button, CheckBox} from '@rneui/base';
+import {SelectList} from 'react-native-dropdown-select-list';
+import usePost from '../hooks/usePost';
 
 export const SingleProductScreen = ({route, navigation}: any) => {
   const {data} = route.params;
+  const [selected, setSelected] = React.useState('');
+  const [verient, setVariation] = useState<any>([]);
 
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    {label: 'Apple', value: 'apple'},
-    {label: 'Banana', value: 'banana'},
-  ]);
+  let lists = [{}];
 
-  const [checked, setChecked] = React.useState(true);
-  const toggleCheckbox = () => setChecked(!checked);
-
-  // const {data: variations} = useFetch(
-  //   `${api_url}/products/27069/variations?consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
-  // );
   const {data: getData} = useFetch(
-    `${api_url}/products/27069?consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
+    `${api_url}/products/${data?.id}?consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
   );
 
+  const addCartData = async () => {
+    const saveData = await fetch(
+      `${store_url}/cart/add-item?consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: 52378,
+          quantity: 1,
+          variation: verient,
+        }),
+      },
+    );
+
+    console.log('addCart', saveData);
+  };
+
   const variants = getData?.attributes;
-  console.log('#######', variants);
+  function convertToSlug(value: any) {
+    return value
+      .toLowerCase()
+      .replace(/ /g, '-')
+      .replace(/[^\w-]+/g, '');
+  }
+
+  variants?.map((item: any, index: number) => {
+    item?.options?.map((option: any, index: number) => {
+      lists.push({key: String(option), value: option});
+    });
+  });
+
+  const setData = (item: any) => {
+    const data: any = [];
+    item?.map((option: any, index: number) => {
+      data.push({key: String(option), value: option});
+    });
+    return data;
+  };
+
+  const getSeletData = (attribute: any, value: any) => {
+    const newData = {
+      attribute: `pa_${convertToSlug(attribute)}`,
+      value: value,
+    };
+    setVariation([...verient, newData]);
+    if (verient?.length == 2) {
+      const uniqueVariations = verient.reduce(
+        (accumulator: any, variation: any) => {
+          if (
+            !accumulator.find((v: any) => v.attribute === variation.attribute)
+          ) {
+            accumulator.push(variation);
+          }
+          return accumulator;
+        },
+        [],
+      );
+      setVariation(uniqueVariations);
+      console.log(uniqueVariations, '######');
+    }
+  };
+  console.log('verient', verient);
 
   return (
     <ScrollView className="bg-white h-full">
@@ -65,19 +119,30 @@ export const SingleProductScreen = ({route, navigation}: any) => {
               paddingHorizontal: 15,
             }}>
             {variants?.map((item: any, index: number) => (
-              <>
-                <Text className="text-[20px] font-FontBold">{item?.name}</Text>
-                <View className="flex flex-row flex-wrap">
-                  {item?.options?.map((option: any, index: number) => (
-                    <CheckBox checked={false} title={option} />
-                  ))}
+              <View className="">
+                <View className="w-full">
+                  <Text className="text-[14px] font-FontBold mb-[10px]">
+                    {item?.name} {convertToSlug(item?.name)}
+                  </Text>
+                  <View className="mb-[10px]">
+                    <SelectList
+                      setSelected={(val: any) => {
+                        setSelected(val);
+                        getSeletData(item?.name, val);
+                      }}
+                      data={setData(item?.options)}
+                      save="value"
+                    />
+                  </View>
                 </View>
-              </>
+              </View>
             ))}
           </View>
         </View>
-        <View className="bg-primaryColor flex justify-center items-center py-[20px] mx-[15px] rounded-[5px]">
-          <Text className="font-FontNormal text-white text-[18px]">
+        <View className="bg-primaryColor flex justify-center items-center py-[20px] mx-[15px] rounded-[5px] mt-[20px]">
+          <Text
+            onPress={() => addCartData()}
+            className="font-FontNormal text-white text-[18px]">
             Add To Cart
           </Text>
         </View>

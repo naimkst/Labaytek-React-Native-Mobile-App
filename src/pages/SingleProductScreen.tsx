@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, Text, View, ScrollView} from 'react-native';
 import HeroSection from '../components/GlobalComponent/HeroSection';
-import {ScrollView} from 'react-native-gesture-handler';
 import useFetch from '../hooks/useFetch';
 import {api_url, consumer_key, consumer_secret, store_url} from '../helper/env';
 import {SearchBar} from 'react-native-screens';

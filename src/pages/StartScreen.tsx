@@ -1,6 +1,5 @@
 import React from 'react';
-import {Button, Image, Text, View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {Button, Image, Text, View, SafeAreaView} from 'react-native';
 
 export const StartScreen: any = ({navigation}: any) => {
   return (

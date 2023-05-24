@@ -5,20 +5,17 @@ import {
   View,
   Dimensions,
   TouchableOpacity,
+  ScrollView,
+  SafeAreaView,
 } from 'react-native';
 import React from 'react';
-import {ScrollView} from 'react-native-gesture-handler';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {SearchSection} from '../components/GlobalComponent/SearchBar';
 import HeroSection from '../components/GlobalComponent/HeroSection';
-import CategoryGrid from '../components/Categories/CategoryGrid';
 import {api_url, consumer_key, consumer_secret} from '../helper/env';
 import useFetch from '../hooks/useFetch';
 import Loader from '../components/GlobalComponent/Loader';
-import SubCategoryScreen from './SubCategoryScreen';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {COLORS} from '../helper/color';
 import {getPrice} from '../helper/functions';
 
 const ProductScreen = ({route}: any) => {

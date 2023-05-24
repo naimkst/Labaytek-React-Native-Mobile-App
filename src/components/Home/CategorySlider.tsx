@@ -12,36 +12,36 @@ export const CategorySlider = () => {
       className="px-[10px] mt-2 "
       showsHorizontalScrollIndicator={false}>
       <View className="flex flex-row gap-2 mr-[20px]">
-        <View className="flex flex-row gap-2 items-center bg-primaryColor pb-2 pt-1 rounded-full px-[20px]">
+        <View className="flex flex-row gap-2 items-center bg-primaryColor pb-3 pt-1 rounded-full px-[15px]">
           <Text
             onPress={() => navigation.navigate('Category')}
-            className="font-FontBold text-[18px] text-white">
+            className="font-FontBold text-[15px] text-white">
             All Categories
           </Text>
           <Image
-            className="w-[30px] h-[30px]"
+            className="w-[20px] h-[20px]"
             style={{tintColor: COLORS.white}}
             source={require('../../assets/images/category.png')}
           />
         </View>
 
-        <View className="flex flex-row gap-2 items-center bg-[#7f2563]  pb-2 pt-1  rounded-full px-[20px]">
-          <Text className="font-FontBold text-[18px] text-white">
+        <View className="flex flex-row gap-2 items-center bg-[#7f2563]  pb-3 pt-1  rounded-full px-[15px]">
+          <Text className="font-FontBold text-[15px] text-white">
             Quick Delivery
           </Text>
           <Image
-            className="w-[30px] h-[30px]"
+            className="w-[20px] h-[20px]"
             style={{tintColor: COLORS.white}}
             source={require('../../assets/images/delivery.png')}
           />
         </View>
 
-        <View className="flex flex-row gap-2 items-center bg-[#335384]  pb-2 pt-1  rounded-full px-[20px]">
-          <Text className="font-FontBold text-[18px] text-white">
+        <View className="flex flex-row gap-2 items-center bg-[#335384]  pb-3 pt-1  rounded-full px-[15px]">
+          <Text className="font-FontBold text-[15px] text-white">
             Product Gellery
           </Text>
           <Image
-            className="w-[30px] h-[30px]"
+            className="w-[20px] h-[20px]"
             style={{tintColor: COLORS.white}}
             source={require('../../assets/images/gallery.png')}
           />

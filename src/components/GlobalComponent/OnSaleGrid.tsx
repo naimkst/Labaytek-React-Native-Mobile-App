@@ -1,6 +1,5 @@
 import React from 'react';
-import {Image, Text, View} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import {Image, Text, View, ScrollView} from 'react-native';
 import {COLORS} from '../../helper/color';
 import {getPrice} from '../../helper/functions';
 

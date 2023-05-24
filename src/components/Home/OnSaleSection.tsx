@@ -1,8 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {SelectedGrid} from '../GlobalComponent/SelectedGrid';
 import {OnSaleGrid} from '../GlobalComponent/OnSaleGrid';
-import Icon from 'react-native-vector-icons/AntDesign';
 
 export const OnSaleSection = ({data}: any) => {
   return (

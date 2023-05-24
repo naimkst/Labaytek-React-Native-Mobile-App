@@ -1,6 +1,5 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
 import {COLORS} from '../../helper/color';
 
 export const SelectedGrid = ({data}: any) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Image, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-export const StartScreen = ({navigation}: any) => {
+export const StartScreen: any = ({navigation}: any) => {
   return (
     <SafeAreaView className="bg-white">
       <View className="flex items-center justify-between h-full py-5">

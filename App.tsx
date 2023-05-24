@@ -13,17 +13,17 @@ import CategoriesScreen from './src/pages/CategoriesScreen';
 import SubCategoryScreen from './src/pages/SubCategoryScreen';
 import ProductScreen from './src/pages/ProductScreen';
 import {SingleProductScreen} from './src/pages/SingleProductScreen';
-import {ThemeProvider, createTheme} from '@rneui/themed';
+import {ThemeProvider} from '@rneui/themed';
 
 const Stack = createNativeStackNavigator();
-const App = () => {
+const App: any = () => {
   const Tab = createBottomTabNavigator();
 
   return (
     <ThemeProvider>
       <NavigationContainer>
         <Tab.Navigator
-          initialRouteName="Home"
+          initialRouteName="Start"
           screenOptions={({route}: any) => ({
             tabBarIcon: ({focused, color, size}) => {
               let iconName = '';
@@ -59,7 +59,7 @@ const App = () => {
         >
           <Tab.Screen
             name="Home"
-            component={StartScreen}
+            component={HomeScreen}
             options={{headerShown: false}}
           />
           <Tab.Screen

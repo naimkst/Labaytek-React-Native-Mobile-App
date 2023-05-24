@@ -1,6 +1,5 @@
 import React from 'react';
 import {Image, Text, View, TextInput} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {COLORS} from '../../helper/color';
 
 export const SearchSection = ({setSearch}: any) => {

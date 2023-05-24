@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Image, Text, View, ScrollView} from 'react-native';
+import {Image, Text, View, ScrollView, ImageBackground} from 'react-native';
 import HeroSection from '../components/GlobalComponent/HeroSection';
 import useFetch from '../hooks/useFetch';
 import {api_url, consumer_key, consumer_secret, store_url} from '../helper/env';
@@ -7,6 +7,8 @@ import {SearchBar} from 'react-native-screens';
 import {Button, CheckBox} from '@rneui/base';
 import {SelectList} from 'react-native-dropdown-select-list';
 import usePost from '../hooks/usePost';
+import Icon from 'react-native-vector-icons/AntDesign';
+import {COLORS} from '../helper/color';
 
 export const SingleProductScreen = ({route, navigation}: any) => {
   const {data} = route.params;
@@ -85,11 +87,135 @@ export const SingleProductScreen = ({route, navigation}: any) => {
   console.log('verient', verient);
 
   return (
-    <ScrollView className="bg-white h-full">
-      <View className=" mb-[60px]">
-        <View>
-          <HeroSection title={data?.name} />
+    <ScrollView className="bg-white mb-[50px] h-[100vh] relative">
+      <ImageBackground
+        source={{uri: data?.images[0]?.src}}
+        imageStyle={{
+          resizeMode: 'cover',
+          borderTopLeftRadius: 30,
+          borderTopRightRadius: 30,
+          width: '100%',
+        }}
+        className="h-[32.4vh]">
+        <View className="flex flex-row justify-between items-center mx-3 pt-[15px]">
+          <View className="pt-[20px]">
+            <Icon name="left" size={30} color={COLORS.primaryColor} />
+          </View>
+          <View>
+            <Icon name="shoppingcart" size={30} color={COLORS.primaryColor} />
+          </View>
         </View>
+      </ImageBackground>
+
+      <View className="h-[65vh] bg-white rounded-[45px] -mt-[45px] px-[20px] py-[40px]">
+        <Text className="font-FontNormal text-[22px] text-primaryBlack">
+          {data?.name}
+        </Text>
+        <View className="flex flex-row space-x-1 mt-[5px]">
+          <Image
+            className="h-[20px] w-[20px]"
+            resizeMode="contain"
+            source={{
+              uri: 'https://ouch-cdn2.icons8.com/xQQX3M3o37Wm3Wx-qtqWhHtt2EzJ2J8vmvCTYgddVPc/rs:fit:256:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNTM3/Lzc3NjE1NjlmLWI0/YzYtNDg2OS05Yzkw/LWUzOTExZjU3YTIy/ZC5wbmc.png',
+            }}
+          />
+          <Image
+            className="h-[20px] w-[20px]"
+            resizeMode="contain"
+            source={{
+              uri: 'https://ouch-cdn2.icons8.com/xQQX3M3o37Wm3Wx-qtqWhHtt2EzJ2J8vmvCTYgddVPc/rs:fit:256:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNTM3/Lzc3NjE1NjlmLWI0/YzYtNDg2OS05Yzkw/LWUzOTExZjU3YTIy/ZC5wbmc.png',
+            }}
+          />
+          <Image
+            className="h-[20px] w-[20px]"
+            resizeMode="contain"
+            source={{
+              uri: 'https://ouch-cdn2.icons8.com/xQQX3M3o37Wm3Wx-qtqWhHtt2EzJ2J8vmvCTYgddVPc/rs:fit:256:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNTM3/Lzc3NjE1NjlmLWI0/YzYtNDg2OS05Yzkw/LWUzOTExZjU3YTIy/ZC5wbmc.png',
+            }}
+          />
+          <Image
+            className="h-[20px] w-[20px]"
+            resizeMode="contain"
+            source={{
+              uri: 'https://ouch-cdn2.icons8.com/xQQX3M3o37Wm3Wx-qtqWhHtt2EzJ2J8vmvCTYgddVPc/rs:fit:256:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNTM3/Lzc3NjE1NjlmLWI0/YzYtNDg2OS05Yzkw/LWUzOTExZjU3YTIy/ZC5wbmc.png',
+            }}
+          />
+          <Image
+            className="h-[20px] w-[20px]"
+            resizeMode="contain"
+            source={{
+              uri: 'https://ouch-cdn2.icons8.com/xQQX3M3o37Wm3Wx-qtqWhHtt2EzJ2J8vmvCTYgddVPc/rs:fit:256:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNTM3/Lzc3NjE1NjlmLWI0/YzYtNDg2OS05Yzkw/LWUzOTExZjU3YTIy/ZC5wbmc.png',
+            }}
+          />
+        </View>
+
+        <View className="mt-5">
+          <Text className="font-FontNormal text-primaryBlack text-[20px]">
+            Color
+          </Text>
+
+          <View className="mt-2 flex flex-row space-x-2">
+            <Image
+              className="h-[25px] w-[25px] rounded-full"
+              resizeMode="cover"
+              source={{
+                uri: 'https://ouch-cdn2.icons8.com/ufargMfHwNlJyrzt_EDEMmmvV_AGKHLVEt4I8zuhBvs/rs:fit:256:189/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvMzAy/LzA4ZmI4N2JlLTRi/NTgtNGEyNC04Yjk0/LTdhNjg2NmQ4OTI5/MC5zdmc.png',
+              }}
+            />
+            <Image
+              className="h-[25px] w-[25px] rounded-full"
+              resizeMode="cover"
+              source={{
+                uri: 'https://ouch-cdn2.icons8.com/O0lRA7u4IEFm8Zmq5H9Cn_lfB9nF4pdjrOyTaS7aqPc/rs:fit:256:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvNjgy/L2FjMThmZGRlLTBj/OGYtNDRiNi1hYzU5/LWJlMzNmOTI3Zjkw/YS5zdmc.png',
+              }}
+            />
+            <Image
+              className="h-[25px] w-[25px] rounded-full"
+              resizeMode="cover"
+              source={{
+                uri: 'https://ouch-cdn2.icons8.com/K9ZuEAW__WF-5VmRoA19CNt7HldQHHsv7hVmIZZTtzs/rs:fit:256:194/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvNDkw/LzhlMmY4M2MzLTc3/OTMtNDU1YS1hZDM4/LTAyODUxNGZlN2Vj/ZS5zdmc.png',
+              }}
+            />
+            <Image
+              className="h-[25px] w-[25px] rounded-full"
+              resizeMode="cover"
+              source={{
+                uri: 'https://ouch-cdn2.icons8.com/ufargMfHwNlJyrzt_EDEMmmvV_AGKHLVEt4I8zuhBvs/rs:fit:256:189/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvMzAy/LzA4ZmI4N2JlLTRi/NTgtNGEyNC04Yjk0/LTdhNjg2NmQ4OTI5/MC5zdmc.png',
+              }}
+            />
+          </View>
+
+          <View className="flex flex-row justify-between items-center mt-4">
+            <View className="flex flex-row items-center border-[1px] border-gray-300 rounded-lg px-[10px]">
+              <Text className="text-[32px] font-FontNormal mr-2 text-primaryBlack -mt-[4px]">
+                -
+              </Text>
+              <Text className="text-[22px] font-FontBold ml-2 text-primaryBlack">
+                0
+              </Text>
+              <Text className="text-[25px] font-FontNormal ml-2 text-primaryBlack -mt-[4px]">
+                +
+              </Text>
+            </View>
+
+            <Text className="text-[25px] font-FontBold ml-2 text-primaryBlack">
+              $40
+            </Text>
+          </View>
+
+          <View className="mt-[40px]">
+            <Text className="font-FontNormal text-primaryBlack text-[20px]">
+              Product Description
+            </Text>
+
+            <Text className="mt-[15px] font-FontLight text-primaryBlack/70 text-[17px] leading-[22px]">
+              {data?.description}
+            </Text>
+          </View>
+        </View>
+      </View>
+
+      {/* <View className=" mb-[60px]">
         <View className="mx-[10px]">
           <Image
             style={{
@@ -142,6 +268,17 @@ export const SingleProductScreen = ({route, navigation}: any) => {
           <Text
             onPress={() => addCartData()}
             className="font-FontNormal text-white text-[18px]">
+            Add To Cart
+          </Text>
+        </View>
+      </View> */}
+
+      <View className="absolute w-full px-3 bottom-3">
+        <View className="flex flex-row justify-between items-center mt-[25px]">
+          <View className="w-[55px] h-[55px] border-[1px] p-[2px] flex justify-center items-center border-gray-300 rounded-[8px]">
+            <Icon name="heart" size={30} color="red" />
+          </View>
+          <Text className="w-[200px] bg-primaryColor text-center py-5 font-FontNormal text-white rounded-[10px]">
             Add To Cart
           </Text>
         </View>

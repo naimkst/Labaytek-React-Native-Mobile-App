@@ -23,7 +23,7 @@ const App: any = () => {
     <ThemeProvider>
       <NavigationContainer>
         <Tab.Navigator
-          initialRouteName="Start"
+          initialRouteName="CategoriesScreen"
           screenOptions={({route}: any) => ({
             tabBarIcon: ({focused, color, size}) => {
               let iconName = '';

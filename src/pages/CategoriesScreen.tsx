@@ -32,7 +32,7 @@ const CategoriesScreen = () => {
             <SearchSection setSearch={setSearch} />
           </View>
           <View className="mt-[10px] px-[5px] flex flex-row flex-wrap">
-            {data.map((category: any, index: any) => (
+            {data?.map((category: any, index: any) => (
               <View key={`cat${index}`} className="w-[50%] p-[5px] mb-[20px]">
                 <View>
                   <Text className="text-[20px] font-FontBold text-primaryBlack text-center pb-2">
@@ -56,8 +56,7 @@ const CategoriesScreen = () => {
                       </Text>
                     ))}
                   </View>
-                  {data
-                    .filter(
+                  {data?.filter(
                       (subcategory: any) => subcategory.parent === category.id,
                     )
                     .map((subcategory: any) => (

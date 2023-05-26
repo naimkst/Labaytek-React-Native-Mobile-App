@@ -18,9 +18,9 @@ import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {getPrice} from '../helper/functions';
 
-const ProductScreen = ({route}: any) => {
+const ProductScreen = ({route, navigation}: any) => {
   const {catId} = route.params;
-  const navigation: any = useNavigation();
+  // const navigation: any = useNavigation();
   const [isSiderBar, setIsSiderBar] = React.useState(false);
   const {width, height} = Dimensions.get('window');
   const [search, setSearch] = React.useState('');

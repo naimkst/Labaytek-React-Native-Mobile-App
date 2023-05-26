@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Image, Text, View, ScrollView, ImageBackground} from 'react-native';
+import {
+  Image,
+  Text,
+  View,
+  ScrollView,
+  ImageBackground,
+  TouchableOpacity,
+} from 'react-native';
 import HeroSection from '../components/GlobalComponent/HeroSection';
 import useFetch from '../hooks/useFetch';
 import {api_url, consumer_key, consumer_secret, store_url} from '../helper/env';
@@ -99,9 +106,11 @@ export const SingleProductScreen = ({route, navigation}: any) => {
         }}
         className="h-[32.4vh]">
         <View className="flex flex-row justify-between items-center mx-3 pt-[15px]">
-          <View className="pt-[20px]">
-            <Icon name="left" size={30} color={COLORS.primaryColor} />
-          </View>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <View className="pt-[20px]">
+              <Icon name="left" size={30} color={COLORS.primaryColor} />
+            </View>
+          </TouchableOpacity>
           <View>
             <Icon name="shoppingcart" size={30} color={COLORS.primaryColor} />
           </View>

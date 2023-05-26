@@ -94,14 +94,9 @@ const ProductScreen = ({route}: any) => {
 
               {/* Products Grid */}
 
-              <View className="flex flex-row flex-wrap relative mb-[60px]">
+              <View className="flex flex-row flex-wrap relative mb-[60px] mx-3 justify-between">
                 {data?.map((item: any, index: number) => (
-                  <View
-                    className={`w-[50%] ${
-                      index % 2 == 0
-                        ? 'pl-[10px] pr-[5px]'
-                        : 'pl-[5px] pr-[10px]'
-                    }  mb-[20px]`}>
+                  <View className={`w-[48.6%] relative mb-3`}>
                     <View>
                       <TouchableOpacity
                         onPress={() =>
@@ -110,10 +105,10 @@ const ProductScreen = ({route}: any) => {
                         <Image
                           style={{
                             width: '100%',
-                            height: 200,
+                            height: 250,
                             resizeMode: 'cover',
                           }}
-                          className="w-full h-[200px]"
+                          className="w-full h-[250px] rounded-lg"
                           source={{
                             uri: item.images[0].src
                               ? item.images[0].src
@@ -122,23 +117,23 @@ const ProductScreen = ({route}: any) => {
                         />
                       </TouchableOpacity>
                     </View>
-                    <View>
+                    <View className="absolute bottom-0 flex flex-row px-[8px] w-full bg-primaryBlack/50 backdrop-blur-sm rounded-bl-lg rounded-br-lg h-[60px] justify-between items-center">
                       <Text
                         onPress={() =>
                           navigation.navigate('SingleProduct', {data: item})
                         }
-                        className="font-FontBold text-primaryBlack text-[18px] leading-[20px] py-[7px]">
+                        className="font-FontBold text-[14px] leading-[20px] py-[7px] w-[75%] text-white">
                         {item.name}
                       </Text>
-                      <View className="flex flex-row justify-between items-center">
-                        <Text className="font-FontBold text-primaryBlack text-[18px] py-[7px]">
+                      <View className="flex flex-row justify-between items-center w-[25 d%]">
+                        <Text className="font-FontBold text-[14px] py-[7px] text-white">
                           {getPrice(item.price_html)}
                           {item.price}
                         </Text>
-                        <View className="bg-primaryBlack flex p-[7px] rounded-full items-center w-[35px] h-[35px]">
-                          <Icon name="shoppingcart" size={22} color={'#fff'} />
-                        </View>
                       </View>
+                    </View>
+                    <View className="bg-primaryBlack flex p-[7px] rounded-full items-center w-[35px] h-[35px] absolute top-2 right-2">
+                      <Icon name="shoppingcart" size={22} color={'#fff'} />
                     </View>
                   </View>
                 ))}

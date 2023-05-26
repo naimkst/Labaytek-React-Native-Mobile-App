@@ -14,6 +14,7 @@ export const SingleProductScreen = ({route, navigation}: any) => {
   const {data} = route.params;
   const [selected, setSelected] = React.useState('');
   const [verient, setVariation] = useState<any>([]);
+  const [quantity, setQuantity] = useState(1);
 
   let lists = [{}];
 
@@ -187,19 +188,23 @@ export const SingleProductScreen = ({route, navigation}: any) => {
 
           <View className="flex flex-row justify-between items-center mt-4">
             <View className="flex flex-row items-center border-[1px] border-gray-300 rounded-lg px-[10px]">
-              <Text className="text-[32px] font-FontNormal mr-2 text-primaryBlack -mt-[4px]">
+              <Text
+                onPress={() => setQuantity(quantity == 1 ? 1 : quantity - 1)}
+                className="text-[32px] font-FontNormal mr-2 text-primaryBlack -mt-[4px]">
                 -
               </Text>
               <Text className="text-[22px] font-FontBold ml-2 text-primaryBlack">
-                0
+                {quantity}
               </Text>
-              <Text className="text-[25px] font-FontNormal ml-2 text-primaryBlack -mt-[4px]">
+              <Text
+                onPress={() => setQuantity(quantity + 1)}
+                className="text-[25px] font-FontNormal ml-2 text-primaryBlack -mt-[4px]">
                 +
               </Text>
             </View>
 
             <Text className="text-[25px] font-FontBold ml-2 text-primaryBlack">
-              $40
+              ${40 * quantity}
             </Text>
           </View>
 
@@ -209,7 +214,12 @@ export const SingleProductScreen = ({route, navigation}: any) => {
             </Text>
 
             <Text className="mt-[15px] font-FontLight text-primaryBlack/70 text-[17px] leading-[22px]">
-              {data?.description}
+              There are many variations of passages of Lorem Ipsum available,
+              but the majority have suffered alteration in some form, by
+              injected humour, or randomised words which don't look even
+              slightly believable. have suffered alteration in some form, by
+              injected humour, or randomised words which don't look even
+              slightly believable.
             </Text>
           </View>
         </View>

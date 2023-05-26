@@ -32,7 +32,7 @@ export const HomeScreen = () => {
     loading: onSaleLoading,
     error: onSaleError,
   } = useFetch(
-    `${api_url}/products?on_sale=true&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
+    `${api_url}/products?category=665&consumer_key=${consumer_key}&consumer_secret=${consumer_secret}`,
   );
 
   if (deliveryLoading && forYouLoading && onSaleLoading) {

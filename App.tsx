@@ -14,6 +14,7 @@ import SubCategoryScreen from './src/pages/SubCategoryScreen';
 import ProductScreen from './src/pages/ProductScreen';
 import {SingleProductScreen} from './src/pages/SingleProductScreen';
 import {ThemeProvider} from '@rneui/themed';
+import {CheckoutScreen} from './src/pages/CheckoutScreen';
 
 const Stack = createNativeStackNavigator();
 const App: any = () => {
@@ -23,7 +24,7 @@ const App: any = () => {
     <ThemeProvider>
       <NavigationContainer>
         <Tab.Navigator
-          initialRouteName="CategoriesScreen"
+          initialRouteName="Checkout"
           screenOptions={({route}: any) => ({
             tabBarIcon: ({focused, color, size}) => {
               let iconName = '';
@@ -101,6 +102,11 @@ const App: any = () => {
           <Tab.Screen
             name="SingleProduct"
             component={SingleProductScreen}
+            options={{headerShown: false, tabBarButton: () => null}}
+          />
+          <Tab.Screen
+            name="Checkout"
+            component={CheckoutScreen}
             options={{headerShown: false, tabBarButton: () => null}}
           />
         </Tab.Navigator>

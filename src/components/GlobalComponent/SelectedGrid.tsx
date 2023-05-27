@@ -1,8 +1,10 @@
 import React from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS} from '../../helper/color';
+import {useNavigation} from '@react-navigation/native';
 
 export const SelectedGrid = ({data}: any) => {
+  const navigation: any = useNavigation();
   return (
     <View
       className="max-w-[100%]"
@@ -18,7 +20,12 @@ export const SelectedGrid = ({data}: any) => {
           justifyContent: 'space-between',
         }}>
         {data?.slice(0, 6)?.map((item: any, index: number) => (
-          <View
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('Product', {
+                catId: item.id,
+              })
+            }
             key={`selected${index}`}
             style={{
               backgroundColor: COLORS.white,
@@ -60,7 +67,7 @@ export const SelectedGrid = ({data}: any) => {
                 {item.name}
               </Text>
             </View>
-          </View>
+          </TouchableOpacity>
         ))}
       </View>
     </View>

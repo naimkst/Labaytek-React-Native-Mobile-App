@@ -2,39 +2,10 @@ import React from 'react';
 import {Image, Text, View, ScrollView} from 'react-native';
 import {COLORS} from '../../helper/color';
 import {getPrice} from '../../helper/functions';
+import {useNavigation} from '@react-navigation/native';
 
-const data = [
-  {
-    id: 1,
-    image: require('../../assets/images/product06.png'),
-    title: 'Amos Chair',
-    description: 'A modren chair on traditional design',
-    price: '$ 200',
-  },
-  {
-    id: 1,
-    image: require('../../assets/images/product08.jpg'),
-    title: 'Amos Chair',
-    description: 'A modren chair on traditional design',
-    price: '$ 200',
-  },
-  {
-    id: 1,
-    image: require('../../assets/images/product07.jpg'),
-    title: 'Amos Chair',
-    description: 'A modren chair on traditional design',
-    price: '$ 200',
-  },
-
-  {
-    id: 1,
-    image: require('../../assets/images/product1.jpg'),
-    title: 'Amos Chair',
-    description: 'A modren chair on traditional design',
-    price: '$ 200',
-  },
-];
 export const OnSaleGrid = ({data}: any) => {
+  const navigation: any = useNavigation();
   return (
     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
       <View className="flex flex-row gap-[15px] max-w-full px-[10px] relative">
@@ -49,7 +20,9 @@ export const OnSaleGrid = ({data}: any) => {
                 uri: item.images[0].src,
               }}
             />
-            <Text className="mt-2 text-[18px] font-FontBold text-primaryBlack">
+            <Text
+              onPress={() => navigation.navigate('SingleProduct', {data: item})}
+              className="mt-2 text-[18px] font-FontBold text-primaryBlack">
               {item.name}
             </Text>
 

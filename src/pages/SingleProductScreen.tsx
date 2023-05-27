@@ -297,9 +297,11 @@ export const SingleProductScreen = ({route, navigation}: any) => {
           <View className="w-[55px] h-[55px] border-[1px] p-[2px] flex justify-center items-center border-gray-300 rounded-[8px]">
             <Icon name="heart" size={30} color="red" />
           </View>
-          <Text className="w-[200px] bg-primaryColor text-center py-5 font-FontNormal text-white rounded-[10px]">
-            Add To Cart
-          </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Checkout')}>
+            <Text className="w-[200px] bg-primaryColor text-center py-5 font-FontNormal text-white rounded-[10px]">
+              Add To Cart
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>

@@ -56,7 +56,8 @@ const CategoriesScreen = () => {
                       </Text>
                     ))}
                   </View>
-                  {data?.filter(
+                  {data
+                    ?.filter(
                       (subcategory: any) => subcategory.parent === category.id,
                     )
                     .map((subcategory: any) => (

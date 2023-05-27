@@ -33,7 +33,7 @@ const SubCategoryScreen = ({route, navigation}: any) => {
           <View>
             <SearchSection setSearch={setSearch} />
           </View>
-          <View className="mt-[10px] px-[5px] flex flex-row flex-wrap">
+          <View className="mt-[10px] px-[10px] flex flex-row flex-wrap">
             {data.map((category: any, index: any) => (
               <TouchableOpacity
                 key={`cat${index}`}

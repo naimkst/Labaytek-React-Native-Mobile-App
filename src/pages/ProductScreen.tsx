@@ -96,7 +96,9 @@ const ProductScreen = ({route, navigation}: any) => {
 
               <View className="flex flex-row flex-wrap relative mb-[60px] mx-3 justify-between">
                 {data?.map((item: any, index: number) => (
-                  <View className={`w-[48.6%] relative mb-3`}>
+                  <View
+                    key={`prdlist-${index}`}
+                    className={`w-[48.6%] relative mb-3`}>
                     <View>
                       <TouchableOpacity
                         onPress={() =>

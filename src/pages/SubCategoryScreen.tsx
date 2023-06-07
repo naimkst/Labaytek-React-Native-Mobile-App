@@ -14,7 +14,6 @@ import HeroSection from '../components/GlobalComponent/HeroSection';
 import {api_url, consumer_key, consumer_secret} from '../helper/env';
 import useFetch from '../hooks/useFetch';
 import Loader from '../components/GlobalComponent/Loader';
-import {Touchable} from 'react-native';
 
 const SubCategoryScreen = ({route, navigation}: any) => {
   const {catId} = route.params;

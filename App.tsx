@@ -16,6 +16,7 @@ import {SingleProductScreen} from './src/pages/SingleProductScreen';
 import {ThemeProvider} from '@rneui/themed';
 import {CheckoutScreen} from './src/pages/CheckoutScreen';
 import CartScreen from './src/pages/CartScreen';
+import ProfileScreen from './src/pages/ProfileScreen';
 
 const Stack = createNativeStackNavigator();
 const App: any = () => {
@@ -25,7 +26,7 @@ const App: any = () => {
     <ThemeProvider>
       <NavigationContainer>
         <Tab.Navigator
-          initialRouteName="Cart"
+          initialRouteName="Profile"
           screenOptions={({route}: any) => ({
             tabBarIcon: ({focused, color, size}) => {
               let iconName = '';
@@ -113,6 +114,11 @@ const App: any = () => {
           <Tab.Screen
             name="Cart"
             component={CartScreen}
+            options={{headerShown: false, tabBarButton: () => null}}
+          />
+          <Tab.Screen
+            name="Profile"
+            component={ProfileScreen}
             options={{headerShown: false, tabBarButton: () => null}}
           />
         </Tab.Navigator>

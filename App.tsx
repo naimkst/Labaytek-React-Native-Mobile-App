@@ -17,6 +17,7 @@ import {ThemeProvider} from '@rneui/themed';
 import {CheckoutScreen} from './src/pages/CheckoutScreen';
 import CartScreen from './src/pages/CartScreen';
 import ProfileScreen from './src/pages/ProfileScreen';
+import QuotesScreen from './src/pages/QuotesScreen';
 
 const Stack = createNativeStackNavigator();
 const App: any = () => {
@@ -119,6 +120,11 @@ const App: any = () => {
           <Tab.Screen
             name="Profile"
             component={ProfileScreen}
+            options={{headerShown: false, tabBarButton: () => null}}
+          />
+          <Tab.Screen
+            name="Quotes"
+            component={QuotesScreen}
             options={{headerShown: false, tabBarButton: () => null}}
           />
         </Tab.Navigator>

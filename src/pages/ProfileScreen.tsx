@@ -15,7 +15,7 @@ const ProfileScreen = ({navigation}: any) => {
   return (
     <ScrollView className="bg-white">
       <View>
-        <HeroSection title="Profile"  />
+        <HeroSection title="Profile" />
       </View>
 
       <View className="px-3 mt-[30px] flex flex-row w-full flex-1">
@@ -48,21 +48,27 @@ const ProfileScreen = ({navigation}: any) => {
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity className="border-[1px] border-gray-200 w-[48.5%] flex justify-center items-center py-5 rounded-[3px] mb-3">
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Order')}
+            className="border-[1px] border-gray-200 w-[48.5%] flex justify-center items-center py-5 rounded-[3px] mb-3">
             <Feather name="truck" size={30} color={COLORS.primaryColor} />
             <Text className="font-FontBold mt-1 text-secondaryGray text-[16px]">
               Orders
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity className="border-[1px] border-gray-200 w-[48.5%] flex justify-center items-center py-5 rounded-[3px] mb-3">
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Address')}
+            className="border-[1px] border-gray-200 w-[48.5%] flex justify-center items-center py-5 rounded-[3px] mb-3">
             <Octicons name="location" size={30} color={COLORS.primaryColor} />
             <Text className="font-FontBold mt-1 text-secondaryGray text-[16px]">
               Address
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity className="border-[1px] border-gray-200 w-[48.5%] flex justify-center items-center py-5 rounded-[3px] mb-3">
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Payment')}
+            className="border-[1px] border-gray-200 w-[48.5%] flex justify-center items-center py-5 rounded-[3px] mb-3">
             <FontAwesome5
               name="money-check"
               size={30}
@@ -73,7 +79,9 @@ const ProfileScreen = ({navigation}: any) => {
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity className="border-[1px] border-gray-200 w-[48.5%] flex justify-center items-center py-5 rounded-[3px] mb-3">
+          <TouchableOpacity
+            onPress={() => navigation.navigate('AccountDetails')}
+            className="border-[1px] border-gray-200 w-[48.5%] flex justify-center items-center py-5 rounded-[3px] mb-3">
             <MaterialCommunityIcons
               name="badge-account-horizontal-outline"
               size={30}
@@ -83,7 +91,7 @@ const ProfileScreen = ({navigation}: any) => {
               Acount Details
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity className="border-[1px] border-gray-200 w-[48.5%] flex justify-center items-center py-5 rounded-[3px] mb-3">
+          {/* <TouchableOpacity className="border-[1px] border-gray-200 w-[48.5%] flex justify-center items-center py-5 rounded-[3px] mb-3">
             <MaterialCommunityIcons
               name="ticket-account"
               size={30}
@@ -102,8 +110,10 @@ const ProfileScreen = ({navigation}: any) => {
             <Text className="font-FontBold mt-1 text-secondaryGray text-[16px]">
               Submit Ticket
             </Text>
-          </TouchableOpacity>
-          <TouchableOpacity className="border-[1px] border-gray-200 w-[48.5%] flex justify-center items-center py-5 rounded-[3px] mb-3">
+          </TouchableOpacity> */}
+          <TouchableOpacity
+            onPress={() => navigation.navigate('MyCoupon')}
+            className="border-[1px] border-gray-200 w-[48.5%] flex justify-center items-center py-5 rounded-[3px] mb-3">
             <MaterialCommunityIcons
               name="ticket-percent-outline"
               size={30}

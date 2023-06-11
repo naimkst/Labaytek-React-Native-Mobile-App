@@ -18,6 +18,11 @@ import {CheckoutScreen} from './src/pages/CheckoutScreen';
 import CartScreen from './src/pages/CartScreen';
 import ProfileScreen from './src/pages/ProfileScreen';
 import QuotesScreen from './src/pages/QuotesScreen';
+import OrderScreen from './src/pages/OrderScreen';
+import AddressScreen from './src/pages/AddressScreen';
+import PaymentScreen from './src/pages/PaymentScreen';
+import AccountDetailsScreen from './src/pages/AccountDetailsScreen';
+import MyCouponsScreen from './src/pages/MyCouponsScreen';
 
 const Stack = createNativeStackNavigator();
 const App: any = () => {
@@ -125,6 +130,31 @@ const App: any = () => {
           <Tab.Screen
             name="Quotes"
             component={QuotesScreen}
+            options={{headerShown: false, tabBarButton: () => null}}
+          />
+          <Tab.Screen
+            name="Order"
+            component={OrderScreen}
+            options={{headerShown: false, tabBarButton: () => null}}
+          />
+          <Tab.Screen
+            name="Address"
+            component={AddressScreen}
+            options={{headerShown: false, tabBarButton: () => null}}
+          />
+          <Tab.Screen
+            name="Payment"
+            component={PaymentScreen}
+            options={{headerShown: false, tabBarButton: () => null}}
+          />
+          <Tab.Screen
+            name="AccountDetails"
+            component={AccountDetailsScreen}
+            options={{headerShown: false, tabBarButton: () => null}}
+          />
+          <Tab.Screen
+            name="MyCoupon"
+            component={MyCouponsScreen}
             options={{headerShown: false, tabBarButton: () => null}}
           />
         </Tab.Navigator>
